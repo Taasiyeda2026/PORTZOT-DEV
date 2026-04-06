@@ -44,6 +44,7 @@
       --accent: #ef7da0;
       --line: #e8d9ee;
       --shadow: 0 20px 45px rgba(58, 33, 68, 0.12);
+      --header-height: 72px;
     }
 
     * {
@@ -75,32 +76,37 @@
 
     .main-nav {
       border-bottom: 1px solid var(--line);
-      background: rgba(255, 255, 255, 0.72);
-      backdrop-filter: blur(14px);
+      background: rgba(255, 255, 255, 0.82);
+      backdrop-filter: blur(16px);
+      box-shadow: 0 10px 28px rgba(53, 31, 63, 0.11);
     }
 
     .pill-nav {
-      border: 1px solid rgba(120, 85, 136, 0.24);
+      border: 1px solid rgba(120, 85, 136, 0.32);
       border-radius: 999px;
-      padding: 8px 14px;
-      font-size: 0.9rem;
+      padding: 9px 16px;
+      font-size: 0.88rem;
+      font-weight: 600;
       color: #493748;
       transition: all 0.22s ease;
-      background: linear-gradient(180deg, #fff, #f9f4fc);
+      background: linear-gradient(180deg, #ffffff 0%, #f7effd 100%);
       text-decoration: none;
       white-space: nowrap;
       box-shadow:
-        inset 0 1px 0 rgba(255,255,255,0.9),
-        0 4px 10px rgba(62, 34, 71, 0.08),
-        0 1px 2px rgba(62, 34, 71, 0.16);
+        inset 0 1px 0 rgba(255,255,255,0.95),
+        inset 0 -2px 0 rgba(130, 83, 150, 0.16),
+        0 6px 14px rgba(62, 34, 71, 0.12),
+        0 1px 2px rgba(62, 34, 71, 0.14);
     }
 
     .pill-nav:hover {
-      transform: translateY(-1px);
-      border-color: rgba(120, 85, 136, 0.5);
+      transform: translateY(-2px);
+      border-color: rgba(120, 85, 136, 0.62);
+      color: #3f2744;
       box-shadow:
         inset 0 1px 0 rgba(255,255,255,0.95),
-        0 7px 16px rgba(83, 48, 95, 0.18);
+        inset 0 -2px 0 rgba(130, 83, 150, 0.2),
+        0 11px 20px rgba(83, 48, 95, 0.22);
     }
 
     .pill-nav.active {
@@ -108,13 +114,15 @@
       color: #fff;
       border-color: #6a3f7d;
       box-shadow:
-        inset 0 1px 0 rgba(255,255,255,0.2),
-        0 6px 16px rgba(66, 37, 78, 0.3);
+        inset 0 1px 0 rgba(255,255,255,0.24),
+        inset 0 -2px 0 rgba(53, 27, 65, 0.3),
+        0 10px 18px rgba(66, 37, 78, 0.34);
     }
 
     .hero-shell {
-      min-height: 100svh;
-      padding: clamp(7.2rem, 9vh, 8.4rem) 1.4rem 2.2rem;
+      min-height: calc(100dvh - var(--header-height));
+      margin-top: var(--header-height);
+      padding: clamp(2rem, 4vh, 2.8rem) 1.4rem clamp(1.8rem, 3.3vh, 2.4rem);
       display: flex;
       align-items: center;
       position: relative;
@@ -122,7 +130,7 @@
       border-bottom: 1px solid var(--line);
       background:
         linear-gradient(145deg, #fdf8ff 0%, #f4eef9 48%, #f8f0f5 100%);
-      transition: transform .7s ease, opacity .6s ease, min-height .5s ease, padding .5s ease;
+      transition: transform .58s ease, opacity .48s ease, filter .45s ease;
     }
 
     .hero-shell::before,
@@ -157,9 +165,10 @@
       width: 100%;
       display: grid;
       grid-template-columns: repeat(12, minmax(0, 1fr));
-      gap: 1rem;
+      gap: clamp(1rem, 1.8vw, 1.6rem);
       position: relative;
       z-index: 2;
+      align-items: center;
     }
 
     .entry-chip {
@@ -178,10 +187,10 @@
     }
 
     .hero-title {
-      font-size: clamp(2.5rem, 6.8vw, 4.9rem);
-      line-height: 1.03;
+      font-size: clamp(2.1rem, 5.6vw, 4.3rem);
+      line-height: 1.06;
       font-weight: 700;
-      margin: 0 0 .95rem;
+      margin: 0 0 1rem;
       color: #241727;
       text-wrap: balance;
     }
@@ -190,7 +199,7 @@
       font-size: clamp(1rem, 2.25vw, 1.22rem);
       line-height: 1.7;
       color: #453449;
-      margin: 0 0 1.4rem;
+      margin: 0 0 1.1rem;
       max-width: 37rem;
     }
 
@@ -198,7 +207,7 @@
       display: inline-flex;
       align-items: center;
       gap: 0.45rem;
-      padding: 0.85rem 1.45rem;
+      padding: 0.9rem 1.55rem;
       border-radius: 999px;
       background: linear-gradient(140deg, #7f4799, #65347e);
       color: #fff;
@@ -218,7 +227,7 @@
     }
 
     .hero-visual {
-      min-height: 340px;
+      min-height: clamp(280px, 40vh, 420px);
       border-radius: 28px;
       border: 1px solid rgba(164, 126, 179, 0.35);
       background:
@@ -258,20 +267,51 @@
       transition: width .45s ease;
     }
 
-    .content-locked { display: none; }
-    body.entered .content-locked { display: block; }
-
-    body.entered .hero-shell {
-      transform: translateY(-26px);
+    .entry-divider {
+      position: relative;
+      height: 0;
       opacity: 0;
-      min-height: 0;
-      padding-top: 0;
-      padding-bottom: 0;
-      border-bottom-width: 0;
+      transform: translateY(-8px);
+      transition: opacity .35s ease, transform .4s ease;
       pointer-events: none;
     }
 
-    body.entered .hero-shell > * { display: none; }
+    .entry-divider::before {
+      content: "";
+      position: absolute;
+      left: 50%;
+      top: -22px;
+      transform: translateX(-50%);
+      width: min(780px, calc(100% - 2.4rem));
+      height: 44px;
+      border-radius: 24px;
+      border: 1px solid rgba(147, 98, 173, 0.28);
+      background: linear-gradient(180deg, rgba(255,255,255,0.96), rgba(246,236,252,0.9));
+      box-shadow: 0 14px 32px rgba(84, 48, 98, 0.2);
+    }
+
+    .content-locked { display: none; }
+    body.entered .content-locked { display: block; }
+    body.entered .entry-divider {
+      height: 34px;
+      opacity: 1;
+      transform: translateY(0);
+      margin: 0 0 .7rem;
+    }
+
+    body.entered .hero-shell {
+      transform: translateY(-28px) scale(0.985);
+      opacity: 0;
+      filter: blur(6px);
+      pointer-events: none;
+      position: absolute;
+      inset: var(--header-height) 0 auto;
+      width: 100%;
+      z-index: 1;
+    }
+
+    body.entered .hero-shell > * { opacity: 0; }
+    body.entered .page-shell { padding-top: var(--header-height); }
 
     .domain-route {
       position: sticky;
@@ -415,7 +455,8 @@
     }
 
     @media (max-width: 900px) {
-      .hero-shell { padding-top: 6.5rem; }
+      :root { --header-height: 68px; }
+      .hero-shell { padding-top: 1.4rem; }
       .hero-visual { min-height: 230px; }
       .domain-route { top: 62px; }
       .stage { padding: 3.6rem 1rem; }
@@ -423,17 +464,18 @@
     }
 
     @media (max-width: 640px) {
+      :root { --header-height: 64px; }
       .pill-nav { padding: 7px 12px; font-size: .84rem; }
       .section-shell { border-radius: 20px; padding: 1.4rem .9rem; }
       .domain-route { padding: .55rem .8rem; }
-      .hero-shell { min-height: 100dvh; }
+      .hero-shell { min-height: calc(100dvh - var(--header-height)); }
     }
   </style>
 </head>
 <body class="h-full min-h-screen pre-entry">
   <div class="page-shell">
     <nav class="main-nav fixed top-0 left-0 right-0 z-50">
-      <div class="max-w-5xl mx-auto px-4 py-3 flex items-center justify-between gap-3">
+      <div class="max-w-5xl mx-auto px-4 py-3 flex items-center justify-between gap-3 min-h-[var(--header-height)]">
         <span id="nav-title" class="text-base md:text-lg font-bold text-[#3f2940]">הגוף שלי וההרגשה שלי</span>
         <div class="flex items-center gap-2 overflow-x-auto pb-1">
           <a href="#fatigue" class="pill-nav nav-link">עייפות</a>
@@ -461,6 +503,8 @@
         </div>
       </div>
     </section>
+
+    <div class="entry-divider" aria-hidden="true"></div>
 
     <div id="locked-content" class="content-locked">
       <div class="domain-route" aria-label="התקדמות בין שלבים">
@@ -826,20 +870,25 @@
     const body = document.body;
     const startBtn = document.getElementById('start-domain');
     const progressFill = document.getElementById('entry-progress-fill');
+    const hero = document.getElementById('entry-hero');
 
     if (startBtn) {
       startBtn.addEventListener('click', (event) => {
         event.preventDefault();
         progressFill.style.width = '100%';
-        body.classList.add('entered');
+        body.classList.add('is-entering');
         body.classList.remove('pre-entry');
 
         setTimeout(() => {
+          body.classList.add('entered');
+          body.classList.remove('is-entering');
+          if (hero) hero.setAttribute('aria-hidden', 'true');
           const fatigue = document.getElementById('fatigue');
           if (fatigue) {
             fatigue.scrollIntoView({ behavior: 'smooth', block: 'start' });
           }
-        }, 130);
+          window.scrollTo({ top: fatigue ? fatigue.offsetTop - 80 : 0, behavior: 'smooth' });
+        }, 420);
       });
     }
 
