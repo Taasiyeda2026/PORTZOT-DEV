@@ -98,9 +98,10 @@
       font-family: 'IBMPlexHebrew', 'Arimo', sans-serif;
       color: var(--text-main);
       background:
-        radial-gradient(circle at 86% 12%, rgba(217, 183, 199, 0.18), transparent 34%),
-        radial-gradient(circle at 12% 3%, rgba(233, 199, 186, 0.16), transparent 30%),
-        linear-gradient(145deg, var(--bg-outer-1), var(--bg-outer-2) 55%, var(--bg-outer-3));
+        radial-gradient(ellipse at 78% 8%, rgba(180, 110, 155, 0.14), transparent 42%),
+        radial-gradient(ellipse at 18% 88%, rgba(94, 59, 82, 0.18), transparent 42%),
+        radial-gradient(ellipse at 50% 50%, rgba(31, 23, 34, 0.6), transparent 80%),
+        linear-gradient(160deg, #17101C 0%, #1F1722 30%, #241A28 60%, #2A1D2F 100%);
       min-height: 100vh;
       line-height: 1.86;
     }
@@ -127,12 +128,16 @@
 
     .surface {
       background: linear-gradient(180deg, var(--bg-panel) 0%, var(--bg-panel-soft) 100%);
-      border: 1px solid rgba(231, 217, 226, 0.95);
+      border: 1px solid rgba(200, 160, 190, 0.22);
       border-radius: var(--radius-xl);
       overflow: clip;
       box-shadow:
-        0 26px 58px rgba(20, 13, 24, 0.48),
-        0 10px 22px rgba(45, 28, 39, 0.18);
+        0 2px 4px rgba(8, 4, 12, 0.5),
+        0 12px 32px rgba(15, 8, 22, 0.52),
+        0 36px 80px rgba(10, 5, 18, 0.38),
+        0 60px 120px rgba(8, 4, 14, 0.22),
+        inset 0 1px 0 rgba(255, 255, 255, 0.06),
+        inset 0 -1px 0 rgba(0, 0, 0, 0.12);
     }
 
     .header {
@@ -215,29 +220,82 @@
     }
 
     .hero::before {
-      width: 320px;
-      height: 320px;
-      background: radial-gradient(circle, rgba(116, 77, 103, 0.2), transparent 67%);
-      left: -115px;
-      top: -80px;
+      width: 380px;
+      height: 380px;
+      background: radial-gradient(circle, rgba(116, 77, 103, 0.28), transparent 67%);
+      left: -130px;
+      top: -100px;
     }
 
     .hero::after {
+      width: 300px;
+      height: 300px;
+      background: radial-gradient(circle, rgba(233, 199, 186, 0.32), transparent 68%);
+      right: -90px;
+      bottom: -90px;
+    }
+
+    .hero-glow {
+      position: absolute;
+      border-radius: 50%;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .hero-glow-1 {
+      width: 420px;
+      height: 420px;
+      background: radial-gradient(circle, rgba(116, 77, 103, 0.22) 0%, transparent 68%);
+      inset-inline-start: -120px;
+      top: -100px;
+      filter: blur(55px);
+    }
+
+    .hero-glow-2 {
       width: 260px;
       height: 260px;
-      background: radial-gradient(circle, rgba(233, 199, 186, 0.28), transparent 68%);
-      right: -80px;
-      bottom: -80px;
+      background: radial-gradient(circle, rgba(233, 199, 186, 0.18) 0%, transparent 68%);
+      inset-inline-end: -60px;
+      bottom: -60px;
+      filter: blur(38px);
+    }
+
+    .hero-eyebrow {
+      display: inline-flex;
+      align-items: center;
+      padding: 5px 14px;
+      border-radius: var(--radius-pill);
+      background: rgba(255, 255, 255, 0.07);
+      border: 1px solid rgba(217, 183, 199, 0.38);
+      color: rgba(246, 220, 232, 0.88);
+      font-size: 12px;
+      font-weight: 500;
+      font-family: 'IBMPlexHebrew', 'Arimo', sans-serif;
+      letter-spacing: 0.01em;
+    }
+
+    .hero-meta-pill {
+      display: inline-flex;
+      align-items: center;
+      padding: 4px 11px;
+      border-radius: var(--radius-pill);
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid rgba(217, 183, 199, 0.2);
+      font-size: 13px;
     }
 
     .hero-card {
       max-width: 840px;
       margin: 0 auto;
-      background: linear-gradient(130deg, #2D2132, #3A2A3C 56%, #4B2F44);
-      border: 1px solid rgba(217, 183, 199, 0.24);
+      background: linear-gradient(135deg, #27192E 0%, #331F38 45%, #3F2442 75%, #4A2A47 100%);
+      border: 1px solid rgba(217, 183, 199, 0.2);
+      border-top: 1px solid rgba(240, 210, 228, 0.28);
       border-radius: var(--radius-lg);
-      padding: 28px 22px;
-      box-shadow: 0 18px 36px rgba(27, 15, 25, 0.35);
+      padding: 32px 26px;
+      box-shadow:
+        0 12px 32px rgba(20, 10, 28, 0.5),
+        0 2px 8px rgba(20, 10, 28, 0.3),
+        inset 0 1px 0 rgba(255, 255, 255, 0.07);
       color: #FBEFF5;
       position: relative;
       overflow: hidden;
@@ -265,10 +323,11 @@
     h1 {
       margin: 0;
       font-family: 'AlefLocal', 'Arimo', sans-serif;
-      font-size: clamp(32px, 8vw, 56px);
-      line-height: 1.08;
-      color: var(--title-soft);
+      font-size: clamp(34px, 8.5vw, 60px);
+      line-height: 1.06;
+      color: #F8E2EE;
       text-wrap: balance;
+      text-shadow: 0 2px 16px rgba(20, 8, 28, 0.35);
     }
 
     .hero-subtitle {
@@ -295,12 +354,12 @@
     }
 
     .btn {
-      min-height: 44px;
+      min-height: 40px;
       width: fit-content;
       border-radius: var(--radius-pill);
       border: 1px solid transparent;
-      padding: 10px 17px;
-      font-size: 15px;
+      padding: 8px 18px;
+      font-size: 14px;
       font-weight: 500;
       font-family: 'IBMPlexHebrew', 'Arimo', sans-serif;
       display: inline-flex;
@@ -346,13 +405,33 @@
       max-width: 760px;
       margin: 0 auto;
       border-radius: var(--radius-lg);
-      background: linear-gradient(180deg, var(--bg-layer), var(--bg-layer-alt));
-      border: 1px solid var(--border-main);
-      box-shadow: 0 12px 24px rgba(118, 84, 102, 0.12);
-      padding: 24px;
+      background: linear-gradient(160deg, #F7EDF3 0%, #F0E4EC 60%, #EDE0E9 100%);
+      border: 1px solid rgba(215, 185, 205, 0.7);
+      border-inline-start: 3px solid #744D67;
+      box-shadow:
+        0 8px 24px rgba(116, 77, 103, 0.14),
+        0 2px 6px rgba(116, 77, 103, 0.08);
+      padding: 26px;
       display: flex;
       flex-direction: column;
       gap: 16px;
+    }
+
+    .intro-accent-line {
+      width: 44px;
+      height: 3px;
+      background: linear-gradient(90deg, #744D67, #D9B7C7);
+      border-radius: 2px;
+      flex-shrink: 0;
+    }
+
+    .intro-label {
+      margin: 0;
+      color: var(--label);
+      font-size: 13px;
+      font-weight: 600;
+      letter-spacing: 0.02em;
+      font-family: 'IBMPlexHebrew', 'Arimo', sans-serif;
     }
 
     .eyebrow {
@@ -366,18 +445,19 @@
     .scribble {
       font-family: 'GveretLevin', 'Arimo', sans-serif;
       color: var(--accent);
-      font-size: 21px;
-      margin-inline-start: 8px;
+      font-size: 22px;
+      margin-inline-start: 6px;
       display: inline-block;
-      transform: translateY(1px);
+      transform: translateY(2px);
     }
 
     .mini-title {
       margin: 0;
       color: var(--heading-main);
-      font-size: 25px;
+      font-size: 26px;
       line-height: 1.22;
       font-weight: 700;
+      font-family: 'AlefLocal', 'Arimo', sans-serif;
     }
 
     .intro-text {
@@ -407,9 +487,10 @@
     h2 {
       margin: 0 0 15px;
       color: var(--heading-main);
-      font-size: clamp(26px, 5vw, 34px);
+      font-family: 'IBMPlexHebrew', 'Arimo', sans-serif;
+      font-size: clamp(22px, 4.5vw, 32px);
       line-height: 1.2;
-      font-weight: 700;
+      font-weight: 600;
     }
 
     p {
@@ -426,44 +507,49 @@
     }
 
     .quote {
-      margin: 24px 0 0;
+      margin: 28px 0 0;
       border-radius: var(--radius-md);
-      border: 1px solid #E3CDD9;
-      background: linear-gradient(160deg, #F8EEF4, #F2E5ED);
-      box-shadow: 0 8px 18px rgba(110, 69, 96, 0.12);
-      padding: 18px;
+      border: 1px solid rgba(220, 190, 210, 0.55);
+      border-inline-start: 4px solid #744D67;
+      background: linear-gradient(160deg, rgba(250, 240, 246, 0.95), rgba(243, 231, 240, 0.95));
+      box-shadow:
+        0 6px 20px rgba(110, 69, 96, 0.16),
+        0 2px 6px rgba(110, 69, 96, 0.08);
+      padding: 22px 24px;
       font-family: 'AlefLocal', 'Arimo', sans-serif;
-      color: #603D55;
-      font-size: clamp(24px, 5vw, 32px);
-      line-height: 1.34;
+      color: #58344A;
+      font-size: clamp(22px, 4.5vw, 30px);
+      line-height: 1.38;
     }
 
     .ending {
       border-top: 1px solid var(--divider);
-      background: linear-gradient(180deg, rgba(244, 232, 239, 0.35), rgba(252, 247, 250, 0.92));
+      background: linear-gradient(180deg, rgba(244, 232, 239, 0.28), rgba(252, 247, 250, 0.88));
     }
 
     .ending-box {
       max-width: 760px;
       margin: 0 auto;
-      background: linear-gradient(130deg, rgba(255, 255, 255, 0.75), rgba(246, 236, 242, 0.75));
-      border: 1px solid var(--border-main);
+      background: linear-gradient(140deg, rgba(255, 255, 255, 0.82), rgba(246, 236, 242, 0.82));
+      border: 1px solid rgba(215, 185, 205, 0.65);
       border-radius: var(--radius-lg);
-      padding: 24px;
+      padding: 28px 24px;
       text-align: center;
       display: flex;
       flex-direction: column;
       align-items: center;
       gap: 16px;
-      box-shadow: 0 10px 24px rgba(117, 83, 104, 0.1);
+      box-shadow:
+        0 10px 28px rgba(116, 77, 103, 0.13),
+        0 3px 8px rgba(116, 77, 103, 0.07);
     }
 
     .ending-title {
       margin: 0;
-      color: var(--heading-sub);
+      color: #6E4560;
       font-family: 'AlefLocal', 'Arimo', sans-serif;
-      font-size: clamp(30px, 5vw, 40px);
-      line-height: 1.16;
+      font-size: clamp(28px, 5vw, 38px);
+      line-height: 1.18;
     }
 
     .ending-text {
@@ -517,13 +603,14 @@
 
       .header-site { font-size: 13px; }
       .domain-badge { font-size: 14px; min-height: 34px; }
-      .back-btn { font-size: 15px; }
-      .btn { font-size: 16px; padding: 10px 20px; }
+      .back-btn { font-size: 14px; }
+      .btn { font-size: 15px; padding: 9px 22px; }
       .hero-subtitle { font-size: 22px; }
       .hero-meta { font-size: 15px; }
       p, .intro-text, .ending-text { font-size: 20px; }
       .mini-title { font-size: 30px; }
-      .intro-card, .ending-box { padding: 28px; }
+      .intro-card { padding: 32px; }
+      .ending-box { padding: 34px 28px; }
     }
 
     @media (prefers-reduced-motion: reduce) {
@@ -549,29 +636,32 @@
 
       <section class="hero" aria-label="מסך פתיחה">
         <div class="hero-card">
+          <div class="hero-glow hero-glow-1" aria-hidden="true"></div>
+          <div class="hero-glow hero-glow-2" aria-hidden="true"></div>
           <div class="hero-content">
-            <span class="domain-badge">תחום 1 · גוף, תחושה ויום־יום</span>
+            <span class="hero-eyebrow">תחום 1 · גוף, תחושה ויום־יום</span>
             <h1>יש דברים בלהיות בת שפשוט לא אמורים להיות כל כך מסובכים</h1>
             <p class="hero-subtitle">הדברים הקטנים שיושבים בבטן, מציקים בשקט, וכולם מתנהגים כאילו הם לגמרי רגילים.</p>
             <div class="hero-meta">
-              <span>כ־7 דקות קריאה</span>
+              <span class="hero-meta-pill">כ־7 דקות קריאה</span>
               <span class="hero-dot" aria-hidden="true"></span>
-              <span>כתבת עומק אישית</span>
+              <span class="hero-meta-pill">כתבת עומק אישית</span>
             </div>
-            <button id="startBtn" class="btn btn-primary" type="button" aria-controls="introSection" aria-expanded="false">בואי נתחיל</button>
+            <button id="startBtn" class="btn btn-primary" type="button" aria-controls="introSection" aria-expanded="false">בואי נתחיל ←</button>
           </div>
         </div>
       </section>
 
       <section class="section intro lockup" id="introSection" aria-label="פתיחה" hidden>
         <div class="intro-card">
-          <p class="eyebrow">שלב 2 · פתיחה <span class="scribble">ברכות</span></p>
+          <div class="intro-accent-line" aria-hidden="true"></div>
+          <p class="intro-label">שלב 2 · פתיחה <span class="scribble">ברכות</span></p>
           <h2 class="mini-title">לפני שממשיכות</h2>
           <p class="intro-text">יש ימים שלא קרה בהם שום דבר דרמטי.
 לא רבת עם אף אחת, לא קיבלת הודעה מוזרה, לא התפרקת באמצע היום.
 ובכל זאת, משהו מרגיש לא נוח.
 בבגד. בגוף. במבט של מישהי. בהערה קטנה. בתחושה הזאת שאין לך דרך להסביר — אבל היא לגמרי שם.</p>
-          <button class="btn btn-secondary" id="revealArticleBtn" type="button" aria-controls="articleSection" aria-expanded="false">להמשך הקריאה</button>
+          <button class="btn btn-primary" id="revealArticleBtn" type="button" aria-controls="articleSection" aria-expanded="false">להמשך הקריאה ←</button>
         </div>
       </section>
 
@@ -668,7 +758,7 @@
         </article>
       </section>
 
-      <section class="section ending" aria-label="סיום">
+      <section class="section ending lockup" id="endingSection" aria-label="סיום" hidden>
         <div class="ending-box">
           <p class="eyebrow">סיום <span class="scribble">יחד</span></p>
           <h2 class="ending-title">לא הכול חייב להיות גדול כדי להיות אמיתי</h2>
@@ -682,7 +772,7 @@
         </div>
       </section>
 
-      <nav class="bottom-nav" aria-label="ניווט תחתון">
+      <nav class="bottom-nav lockup" id="bottomNav" aria-label="ניווט תחתון" hidden>
         <a class="btn btn-secondary" href="alldomains.html">חזרה לכל התחומים</a>
       </nav>
     </div>
@@ -694,15 +784,24 @@
       const startBtn = document.getElementById('startBtn');
       const introSection = document.getElementById('introSection');
       const articleSection = document.getElementById('articleSection');
+      const endingSection = document.getElementById('endingSection');
+      const bottomNav = document.getElementById('bottomNav');
       const revealArticleBtn = document.getElementById('revealArticleBtn');
 
       if (!startBtn || !introSection || !articleSection || !revealArticleBtn) return;
 
-      function reveal(section) {
+      const HEADER_OFFSET = 72;
+
+      function reveal(section, scrollTo) {
         if (!section.hidden) return;
         section.hidden = false;
-        requestAnimationFrame(() => section.classList.add('is-visible'));
-        section.scrollIntoView({ behavior: prefersReducedMotion ? 'auto' : 'smooth', block: 'start' });
+        requestAnimationFrame(() => {
+          requestAnimationFrame(() => section.classList.add('is-visible'));
+        });
+        if (scrollTo !== false) {
+          const top = section.getBoundingClientRect().top + window.scrollY - HEADER_OFFSET;
+          window.scrollTo({ top: Math.max(0, top), behavior: prefersReducedMotion ? 'auto' : 'smooth' });
+        }
       }
 
       startBtn.addEventListener('click', function () {
@@ -713,6 +812,9 @@
       revealArticleBtn.addEventListener('click', function () {
         reveal(articleSection);
         revealArticleBtn.setAttribute('aria-expanded', 'true');
+        // Reveal ending and nav without scrolling (they appear below naturally)
+        if (endingSection) { endingSection.hidden = false; requestAnimationFrame(() => requestAnimationFrame(() => endingSection.classList.add('is-visible'))); }
+        if (bottomNav) { bottomNav.hidden = false; requestAnimationFrame(() => requestAnimationFrame(() => bottomNav.classList.add('is-visible'))); }
       });
     })();
   </script>
