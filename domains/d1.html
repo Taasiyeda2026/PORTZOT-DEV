@@ -10,261 +10,169 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>הגוף שלי וההרגשה שלי | מרחב חקר</title>
   <script src="https://cdn.tailwindcss.com"></script>
-
   <style>
     @font-face {
-      font-family: 'IBM Plex Sans Hebrew';
-      src: url('../fonts/IBMPlexSansHebrew-Regular.ttf') format('truetype');
+      font-family: 'AlefLocal';
+      src: url('../fonts/Alef-regular.woff') format('woff');
       font-weight: 400;
       font-style: normal;
-      font-display: swap;
     }
     @font-face {
-      font-family: 'IBM Plex Sans Hebrew';
-      src: url('../fonts/IBMPlexSansHebrew-SemiBold.ttf') format('truetype');
-      font-weight: 600;
-      font-style: normal;
-      font-display: swap;
-    }
-    @font-face {
-      font-family: 'IBM Plex Sans Hebrew';
-      src: url('../fonts/IBMPlexSansHebrew-Bold.ttf') format('truetype');
+      font-family: 'AlefLocal';
+      src: url('../fonts/Alef-bold.woff') format('woff');
       font-weight: 700;
       font-style: normal;
-      font-display: swap;
     }
 
     :root {
-      --bg: #f6f1f7;
-      --surface: #fff;
-      --text: #221722;
-      --muted: #5e4c5d;
-      --primary: #6b3a7f;
-      --secondary: #9158a7;
-      --accent: #ef7da0;
-      --line: #e8d9ee;
-      --shadow: 0 20px 45px rgba(58, 33, 68, 0.12);
-      --header-height: 72px;
+      --header-height: 74px;
     }
 
-    * {
-      box-sizing: border-box;
-      font-family: 'IBM Plex Sans Hebrew', sans-serif;
-    }
-
+    * { box-sizing: border-box; font-family: 'AlefLocal', 'Arimo', sans-serif; }
     html { scroll-behavior: smooth; }
-
     body {
-      margin: 0;
-      background:
-        radial-gradient(circle at 8% 10%, #fbe3ed 0, transparent 32%),
-        radial-gradient(circle at 90% 3%, #e4dbff 0, transparent 28%),
-        var(--bg);
-      color: var(--text);
+      background: #f8f3ef;
+      color: #23161d;
       overflow-x: hidden;
     }
-
-    body.pre-entry { overflow: hidden; }
-
     .page-shell {
-      max-width: 1120px;
+      max-width: 1080px;
       margin: 0 auto;
-      background: linear-gradient(180deg, rgba(255,255,255,0.94), rgba(254,252,255,0.95));
-      box-shadow: 0 26px 60px rgba(40, 24, 49, 0.12);
-      min-height: 100vh;
+      background: #fcf8f6;
+      box-shadow: 0 20px 50px rgba(46, 31, 38, 0.08);
     }
-
-    .main-nav {
-      border-bottom: 1px solid var(--line);
-      background: rgba(255, 255, 255, 0.82);
-      backdrop-filter: blur(16px);
-      box-shadow: 0 10px 28px rgba(53, 31, 63, 0.11);
-    }
-
     .pill-nav {
-      border: 1px solid rgba(120, 85, 136, 0.32);
+      border: 1px solid rgba(131, 87, 108, 0.38);
       border-radius: 999px;
-      padding: 9px 16px;
+      padding: 8px 15px;
       font-size: 0.88rem;
-      font-weight: 600;
-      color: #493748;
+      font-weight: 700;
+      color: #4b3341;
       transition: all 0.22s ease;
-      background: linear-gradient(180deg, #ffffff 0%, #f7effd 100%);
+      background: linear-gradient(180deg, #ffffff 0%, #f7edf3 100%);
       text-decoration: none;
       white-space: nowrap;
-      box-shadow:
-        inset 0 1px 0 rgba(255,255,255,0.95),
-        inset 0 -2px 0 rgba(130, 83, 150, 0.16),
-        0 6px 14px rgba(62, 34, 71, 0.12),
-        0 1px 2px rgba(62, 34, 71, 0.14);
+      box-shadow: inset 0 1px 0 rgba(255,255,255,0.95), inset 0 -2px 0 rgba(120, 74, 96, 0.14), 0 7px 14px rgba(62, 34, 47, 0.12), 0 1px 2px rgba(62, 34, 47, 0.18);
     }
-
     .pill-nav:hover {
+      background: #fff;
+      border-color: #a26684;
       transform: translateY(-2px);
-      border-color: rgba(120, 85, 136, 0.62);
-      color: #3f2744;
-      box-shadow:
-        inset 0 1px 0 rgba(255,255,255,0.95),
-        inset 0 -2px 0 rgba(130, 83, 150, 0.2),
-        0 11px 20px rgba(83, 48, 95, 0.22);
+      box-shadow: inset 0 1px 0 rgba(255,255,255,0.98), inset 0 -2px 0 rgba(120, 74, 96, 0.18), 0 11px 18px rgba(62, 34, 47, 0.2), 0 2px 3px rgba(62, 34, 47, 0.16);
     }
-
     .pill-nav.active {
-      background: linear-gradient(180deg, #7f4b96, #663a7a);
+      background: linear-gradient(155deg, #7a3b5f, #5f2b49);
       color: #fff;
-      border-color: #6a3f7d;
-      box-shadow:
-        inset 0 1px 0 rgba(255,255,255,0.24),
-        inset 0 -2px 0 rgba(53, 27, 65, 0.3),
-        0 10px 18px rgba(66, 37, 78, 0.34);
+      border-color: #6d3755;
+      box-shadow: inset 0 1px 0 rgba(255,255,255,0.2), inset 0 -2px 0 rgba(45, 19, 34, 0.3), 0 10px 18px rgba(66, 37, 51, 0.34);
     }
-
     .hero-shell {
       min-height: calc(100dvh - var(--header-height));
       margin-top: var(--header-height);
-      padding: clamp(2rem, 4vh, 2.8rem) 1.4rem clamp(1.8rem, 3.3vh, 2.4rem);
-      display: flex;
-      align-items: center;
+      padding: clamp(1.8rem, 4vh, 2.8rem) 1.5rem 2.2rem;
+      background: linear-gradient(180deg, #fbf5f2 0%, #f8f3ef 100%);
+      border-bottom: 1px solid #efdee5;
       position: relative;
       overflow: hidden;
-      border-bottom: 1px solid var(--line);
-      background:
-        linear-gradient(145deg, #fdf8ff 0%, #f4eef9 48%, #f8f0f5 100%);
-      transition: transform .58s ease, opacity .48s ease, filter .45s ease;
     }
-
     .hero-shell::before,
     .hero-shell::after {
       content: "";
       position: absolute;
       border-radius: 999px;
+      filter: blur(40px);
+      opacity: 0.45;
       pointer-events: none;
-      filter: blur(10px);
-      opacity: 0.8;
     }
-
     .hero-shell::before {
-      width: 330px;
-      height: 330px;
-      left: -84px;
-      top: -70px;
-      background: radial-gradient(circle, rgba(241,130,169,0.56), transparent 67%);
+      width: 280px;
+      height: 280px;
+      background: #e6cad7;
+      top: -60px;
+      left: -100px;
     }
-
     .hero-shell::after {
-      width: 380px;
-      height: 380px;
-      right: -104px;
-      bottom: -120px;
-      background: radial-gradient(circle, rgba(156,105,215,0.5), transparent 64%);
+      width: 320px;
+      height: 320px;
+      background: #d7c3d8;
+      bottom: -130px;
+      right: -80px;
     }
-
-    .hero-layout {
-      max-width: 1020px;
-      margin: 0 auto;
-      width: 100%;
+    .section-shell {
+      padding: 5rem 1.5rem;
+      border-bottom: 1px solid #efdee5;
+    }
+    .section-kicker {
+      display: inline-block;
+      font-size: 0.78rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: #7b4a64;
+      margin-bottom: 0.65rem;
+      font-weight: 700;
+    }
+    .section-grid {
       display: grid;
       grid-template-columns: repeat(12, minmax(0, 1fr));
-      gap: clamp(1rem, 1.8vw, 1.6rem);
-      position: relative;
-      z-index: 2;
-      align-items: center;
+      gap: 1rem;
     }
-
-    .entry-chip {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      padding: 7px 13px;
-      border-radius: 999px;
-      color: #6d3e80;
-      background: rgba(255, 255, 255, 0.76);
-      border: 1px solid rgba(146, 90, 170, 0.28);
-      font-size: 0.82rem;
-      font-weight: 600;
-      letter-spacing: 0.04em;
-      margin-bottom: 1.05rem;
+    .editorial-card {
+      background: #fff;
+      border: 1px solid #ecdde5;
+      border-radius: 16px;
+      padding: 1.4rem;
+      box-shadow: 0 10px 25px rgba(49, 31, 40, 0.05);
     }
-
-    .hero-title {
-      font-size: clamp(2.1rem, 5.6vw, 4.3rem);
-      line-height: 1.06;
-      font-weight: 700;
-      margin: 0 0 1rem;
-      color: #241727;
-      text-wrap: balance;
+    .soft-panel {
+      background: #f6eef2;
+      border: 1px solid #e9d7e1;
+      border-radius: 16px;
+      padding: 1.4rem;
     }
-
-    .hero-desc {
-      font-size: clamp(1rem, 2.25vw, 1.22rem);
-      line-height: 1.7;
-      color: #453449;
-      margin: 0 0 1.1rem;
-      max-width: 37rem;
+    .quote-block {
+      border-right: 4px solid #8c4969;
+      background: #f4eaef;
+      border-radius: 12px;
+      padding: 1rem 1.2rem;
+      color: #3a2731;
     }
-
-    .start-btn {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.45rem;
-      padding: 0.9rem 1.55rem;
-      border-radius: 999px;
-      background: linear-gradient(140deg, #7f4799, #65347e);
-      color: #fff;
-      text-decoration: none;
-      font-weight: 600;
-      box-shadow:
-        inset 0 1px 0 rgba(255,255,255,0.24),
-        0 10px 20px rgba(79, 45, 95, 0.32);
-      transition: transform .2s ease, box-shadow .2s ease;
+    .mini-note {
+      font-size: 0.9rem;
+      color: #6a5260;
+      background: #fbf7f9;
+      border: 1px dashed #d8becd;
+      border-radius: 12px;
+      padding: 0.7rem 0.9rem;
     }
-
-    .start-btn:hover {
-      transform: translateY(-2px);
-      box-shadow:
-        inset 0 1px 0 rgba(255,255,255,0.32),
-        0 14px 24px rgba(79, 45, 95, 0.38);
-    }
-
-    .hero-visual {
-      min-height: clamp(280px, 40vh, 420px);
-      border-radius: 28px;
-      border: 1px solid rgba(164, 126, 179, 0.35);
+    .visual-abstract {
+      min-height: 280px;
+      border-radius: 24px;
+      border: 1px solid #ead7e1;
       background:
-        radial-gradient(circle at 78% 17%, rgba(239,125,160,0.42), transparent 42%),
-        radial-gradient(circle at 20% 82%, rgba(126,89,219,0.34), transparent 46%),
-        linear-gradient(145deg, #fff, #f3ebfb);
-      box-shadow: 0 22px 36px rgba(77, 46, 90, 0.12);
+        radial-gradient(circle at 75% 20%, rgba(140, 73, 105, 0.24), transparent 40%),
+        radial-gradient(circle at 20% 80%, rgba(193, 145, 169, 0.26), transparent 46%),
+        linear-gradient(135deg, #fff 0%, #f6edf2 100%);
       position: relative;
       overflow: hidden;
     }
-
-    .hero-visual::before,
-    .hero-visual::after {
+    .visual-abstract::before,
+    .visual-abstract::after {
       content: "";
       position: absolute;
       border-radius: 999px;
-      border: 1px solid rgba(126, 82, 145, 0.26);
+      border: 1px solid rgba(125, 73, 98, 0.25);
     }
-
-    .hero-visual::before { width: 210px; height: 210px; right: 36px; top: 34px; }
-    .hero-visual::after { width: 130px; height: 130px; left: 30px; bottom: 28px; }
-
-    .entry-progress {
-      margin-top: 1.1rem;
-      width: min(380px, 100%);
-      height: 5px;
-      border-radius: 999px;
-      background: rgba(81, 54, 92, 0.14);
-      overflow: hidden;
+    .visual-abstract::before {
+      width: 200px;
+      height: 200px;
+      top: 26px;
+      right: 44px;
     }
-
-    .entry-progress span {
-      display: block;
-      width: 0%;
-      height: 100%;
-      background: linear-gradient(90deg, #f07aa1, #8b58b6);
-      transition: width .45s ease;
+    .visual-abstract::after {
+      width: 145px;
+      height: 145px;
+      bottom: 24px;
+      left: 40px;
     }
 
     .entry-divider {
@@ -275,33 +183,60 @@
       transition: opacity .35s ease, transform .4s ease;
       pointer-events: none;
     }
-
     .entry-divider::before {
       content: "";
       position: absolute;
       left: 50%;
-      top: -22px;
+      top: -18px;
       transform: translateX(-50%);
-      width: min(780px, calc(100% - 2.4rem));
-      height: 44px;
-      border-radius: 24px;
-      border: 1px solid rgba(147, 98, 173, 0.28);
-      background: linear-gradient(180deg, rgba(255,255,255,0.96), rgba(246,236,252,0.9));
-      box-shadow: 0 14px 32px rgba(84, 48, 98, 0.2);
+      width: min(760px, calc(100% - 2.2rem));
+      height: 36px;
+      border-radius: 999px;
+      border: 1px solid rgba(136, 92, 120, 0.25);
+      background: linear-gradient(180deg, rgba(255,255,255,0.95), rgba(244,233,239,0.9));
+      box-shadow: 0 14px 28px rgba(62, 34, 47, 0.18);
     }
+    .domain-route {
+      position: sticky;
+      top: 68px;
+      z-index: 15;
+      margin: 0 auto;
+      max-width: 1000px;
+      padding: .65rem .9rem;
+      border-radius: 999px;
+      border: 1px solid #e8d7e0;
+      background: rgba(252,248,246,0.92);
+      backdrop-filter: blur(8px);
+    }
+    .route-track {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      display: grid;
+      grid-template-columns: repeat(5,minmax(0,1fr));
+      gap: .45rem;
+      text-align: center;
+      font-size: .78rem;
+      color: #6f5664;
+      font-weight: 700;
+    }
+    .route-track li {
+      border: 1px solid #e6d7df;
+      border-radius: 999px;
+      padding: .38rem .2rem;
+      background: #fff;
+      box-shadow: 0 3px 8px rgba(62,34,47,0.08);
+    }
+    #fatigue, #hunger, #body-image, #movement, #security { scroll-margin-top: 134px; }
 
+    body.pre-entry { overflow: hidden; }
     .content-locked { display: none; }
     body.entered .content-locked { display: block; }
-    body.entered .entry-divider {
-      height: 34px;
-      opacity: 1;
-      transform: translateY(0);
-      margin: 0 0 .7rem;
-    }
-
+    body.entered .entry-divider { height: 24px; opacity: 1; transform: translateY(0); }
+    .hero-shell { transition: transform .55s ease, opacity .45s ease, filter .45s ease; }
     body.entered .hero-shell {
-      transform: translateY(-28px) scale(0.985);
       opacity: 0;
+      transform: translateY(-24px) scale(.985);
       filter: blur(6px);
       pointer-events: none;
       position: absolute;
@@ -310,173 +245,24 @@
       z-index: 1;
     }
 
-    body.entered .hero-shell > * { opacity: 0; }
-    body.entered .page-shell { padding-top: var(--header-height); }
-
-    .domain-route {
-      position: sticky;
-      top: 66px;
-      z-index: 32;
-      padding: .65rem 1rem;
-      border-bottom: 1px solid var(--line);
-      background: rgba(252, 247, 255, 0.92);
-      backdrop-filter: blur(10px);
-    }
-
-    .route-track {
-      max-width: 900px;
-      margin: 0 auto;
-      display: grid;
-      grid-template-columns: repeat(5, minmax(0, 1fr));
-      gap: .45rem;
-      list-style: none;
-      padding: 0;
-    }
-
-    .route-track li {
-      border: 1px solid #e3d2ea;
-      border-radius: 12px;
-      background: #fff;
-      padding: .45rem .55rem;
-      box-shadow: 0 6px 12px rgba(77, 46, 90, 0.05);
-      font-size: .74rem;
-      color: #6b596d;
-      text-align: center;
-      transition: all .22s ease;
-    }
-
-    .route-track li.is-active {
-      border-color: #9158a7;
-      color: #5b316e;
-      transform: translateY(-1px);
-      box-shadow: 0 10px 14px rgba(101, 57, 119, 0.15);
-      font-weight: 600;
-    }
-
-    .stage {
-      padding: 4.6rem 1.2rem;
-      position: relative;
-    }
-
-    .stage::before {
-      content: "";
-      position: absolute;
-      top: 0;
-      left: 50%;
-      transform: translateX(-50%);
-      width: min(860px, 92%);
-      border-top: 1px dashed rgba(126, 85, 147, 0.36);
-    }
-
-    .stage:nth-of-type(odd) {
-      background: linear-gradient(180deg, rgba(255,255,255,0.74), rgba(251,246,255,0.62));
-    }
-
-    .stage:nth-of-type(even) {
-      background: linear-gradient(180deg, rgba(253,248,255,0.86), rgba(248,241,252,0.66));
-    }
-
-    .section-shell {
-      max-width: 1020px;
-      margin: 0 auto;
-      border: 1px solid #e8d9ef;
-      border-radius: 28px;
-      padding: 2rem 1.2rem;
-      background: rgba(255,255,255,0.9);
-      box-shadow: 0 14px 30px rgba(70, 41, 82, 0.08);
-    }
-
-    .section-kicker {
-      display: inline-block;
-      font-size: .79rem;
-      letter-spacing: 0.09em;
-      color: #7d4f92;
-      margin-bottom: .58rem;
-      font-weight: 600;
-      text-transform: uppercase;
-    }
-
-    .section-grid {
-      display: grid;
-      grid-template-columns: repeat(12, minmax(0, 1fr));
-      gap: 1rem;
-    }
-
-    .editorial-card {
-      background: #fff;
-      border: 1px solid #eadcf1;
-      border-radius: 17px;
-      padding: 1.35rem;
-      box-shadow: 0 10px 18px rgba(54, 34, 62, 0.05);
-    }
-
-    .soft-panel {
-      background: #f8f2fb;
-      border: 1px solid #e6d5f0;
-      border-radius: 14px;
-      padding: 1rem;
-    }
-
-    .quote-block {
-      border-right: 4px solid #864ca1;
-      background: #f6eefb;
-      border-radius: 12px;
-      padding: 1rem 1.1rem;
-      color: #392742;
-    }
-
-    .mini-note {
-      font-size: .9rem;
-      color: #5f4c64;
-      background: #fdf8ff;
-      border: 1px dashed #cdb3d9;
-      border-radius: 12px;
-      padding: .78rem .9rem;
-    }
-
-    .stage-end {
-      margin-top: 1.25rem;
-      border-radius: 12px;
-      border: 1px dashed #d4bfdf;
-      background: linear-gradient(90deg, rgba(253,246,255,0.96), rgba(248,241,252,0.92));
-      padding: .8rem 1rem;
-      color: #5e4c64;
-      font-size: .92rem;
-    }
-
-    .summary-shell {
-      padding: 5rem 1.2rem;
-      background: linear-gradient(180deg, #f7effb, #f2eaf7);
-    }
-
-    footer {
-      background: #2c2031;
-      color: #f2e8f7;
-    }
-
     @media (max-width: 900px) {
       :root { --header-height: 68px; }
-      .hero-shell { padding-top: 1.4rem; }
-      .hero-visual { min-height: 230px; }
-      .domain-route { top: 62px; }
-      .stage { padding: 3.6rem 1rem; }
+      .hero-shell { padding-top: 1.5rem; padding-bottom: 2rem; }
+      .section-shell { padding: 3.5rem 1rem; }
       .route-track { grid-template-columns: 1fr; }
+      .domain-route { border-radius: 20px; }
     }
-
     @media (max-width: 640px) {
       :root { --header-height: 64px; }
-      .pill-nav { padding: 7px 12px; font-size: .84rem; }
-      .section-shell { border-radius: 20px; padding: 1.4rem .9rem; }
-      .domain-route { padding: .55rem .8rem; }
-      .hero-shell { min-height: calc(100dvh - var(--header-height)); }
+      .visual-abstract { min-height: 180px; }
     }
   </style>
 </head>
 <body class="h-full min-h-screen pre-entry">
   <div class="page-shell">
-    <nav class="main-nav fixed top-0 left-0 right-0 z-50">
+    <nav class="fixed top-0 left-0 right-0 z-50 bg-[#fcf8f6]/92 backdrop-blur border-b border-[#eadbe3] shadow-[0_10px_24px_rgba(49,31,40,0.12)]">
       <div class="max-w-5xl mx-auto px-4 py-3 flex items-center justify-between gap-3 min-h-[var(--header-height)]">
-        <span id="nav-title" class="text-base md:text-lg font-bold text-[#3f2940]">הגוף שלי וההרגשה שלי</span>
+        <span id="nav-title" class="text-base md:text-lg font-bold text-[#432a37]">הגוף שלי וההרגשה שלי</span>
         <div class="flex items-center gap-2 overflow-x-auto pb-1">
           <a href="#fatigue" class="pill-nav nav-link">עייפות</a>
           <a href="#hunger" class="pill-nav nav-link">רעב</a>
@@ -488,18 +274,16 @@
       </div>
     </nav>
 
-    <section class="hero-shell" id="entry-hero">
-      <div class="hero-layout items-center">
+    <section class="hero-shell">
+      <div class="max-w-5xl mx-auto section-grid items-center relative z-10">
         <div class="col-span-12 lg:col-span-7">
-          <p class="entry-chip">Domain 01 · כניסה למרחב</p>
-          <h1 id="hero-title" class="hero-title">הגוף שלי וההרגשה שלי</h1>
-          <p id="hero-subtitle" class="hero-desc">מרחב חקר רגשי-גופני שמחבר בין מה שאת מרגישה לבין מה שהגוף שלך מספר לך.</p>
-          <p class="hero-desc">הגוף שלך הוא הבית שלך. זה המקום שבו את חיה, כל רגע, כל יום. ובגיל ההתבגרות, הגוף משתנה במהירות — לפעמים מהר יותר ממה שאת מספיקה להרגיש בנוח איתו.</p>
-          <a id="start-domain" href="#fatigue" class="start-btn">בואי נתחיל <span aria-hidden="true">←</span></a>
-          <div class="entry-progress" aria-hidden="true"><span id="entry-progress-fill"></span></div>
+          <p class="section-kicker">Domain 01</p>
+          <h1 id="hero-title" class="text-5xl md:text-7xl font-extrabold leading-[1.05] text-[#24161d] mb-4">הגוף שלי וההרגשה שלי</h1>
+                    <p class="text-base md:text-lg leading-relaxed text-[#3e2e38] mb-7 max-w-2xl">הגוף שלך הוא הבית שלך. זה המקום שבו את חיה, כל רגע, כל יום. ובגיל ההתבגרות, הגוף משתנה במהירות — לפעמים מהר יותר ממה שאת מספיקה להרגיש בנוח איתו.</p>
+          <a id="start-domain" href="#fatigue" class="inline-flex items-center gap-2 bg-[#6d3755] hover:bg-[#5a2d46] transition-colors text-white px-6 py-3 rounded-full font-medium">בואי נתחיל</a>
         </div>
         <div class="col-span-12 lg:col-span-5">
-          <div class="hero-visual"></div>
+          <div class="visual-abstract"></div>
         </div>
       </div>
     </section>
@@ -509,16 +293,15 @@
     <div id="locked-content" class="content-locked">
       <div class="domain-route" aria-label="התקדמות בין שלבים">
         <ol class="route-track">
-          <li data-step="fatigue">שלב 1 · עייפות</li>
-          <li data-step="hunger">שלב 2 · רעב</li>
-          <li data-step="body-image">שלב 3 · דימוי גוף</li>
-          <li data-step="movement">שלב 4 · תנועה</li>
-          <li data-step="security">שלב 5 · ביטחון</li>
+          <li>שלב 1 · עייפות</li>
+          <li>שלב 2 · רעב</li>
+          <li>שלב 3 · דימוי גוף</li>
+          <li>שלב 4 · תנועה</li>
+          <li>שלב 5 · ביטחון</li>
         </ol>
       </div>
-
-      <section id="fatigue" class="stage">
-        <div class="section-shell">
+      <section id="fatigue" class="section-shell">
+        <div class="max-w-5xl mx-auto">
           <p class="section-kicker">שלב ראשון</p>
           <h2 class="text-3xl md:text-5xl font-bold mb-4">העייפות - למה אני כל כך עייפה?</h2>
           <p class="text-lg text-[#54404c] mb-8">להרגיש עייפה כל הזמן זו תחושה מאוד מוכרת לנערות בגיל ההתבגרות. אבל למה זה קורה?</p>
@@ -563,12 +346,11 @@
             </div>
           </div>
           <div class="quote-block"><strong>זכרי</strong><p>עייפות בגיל שלך היא <strong>לגיטימית</strong>. הגוף שלך עושה עבודה ענקית, גם כשנראה שאת "רק יושבת". אם את עייפה — זה לא אומר שאת עצלה. זה אומר שאת <em>אנושית</em>.</p></div>
-          <p class="stage-end">סיום שלב 1 · כשאת מזהה עייפות, כבר התחלת להקשיב לגוף.</p>
         </div>
       </section>
 
-      <section id="hunger" class="stage">
-        <div class="section-shell">
+      <section id="hunger" class="section-shell">
+        <div class="max-w-5xl mx-auto">
           <p class="section-kicker">שלב שני</p>
           <h2 class="text-3xl md:text-5xl font-bold mb-4">הרעב - למה זה כל כך מבלבל?</h2>
           <p class="text-lg text-[#54404c] mb-8">הרעב בגיל ההתבגרות יכול להיות הרפתקה משלו — לפעמים את רעבה כל הזמן, ולפעמים בכלל לא רוצה לאכול.</p>
@@ -599,16 +381,15 @@
               <div class="soft-panel"><strong>הקשיבי לגוף</strong><p>שאלי את עצמך: "האם אני רעבה פיזית?" אם כן — אכלי. אם לא — נסי להבין מה את באמת צריכה.</p></div>
               <div class="soft-panel"><strong>אכלי ארוחות קבועות</strong><p>שלוש ארוחות + חטיפים בריאים. הגוף צריך דלק קבוע, לא רק פעם ביום.</p></div>
               <div class="soft-panel"><strong>אין "אוכל רע"</strong><p>גלידה, שוקולד, פיצה — אלה לא אויבים. זה בסדר ליהנות מהם. המפתח הוא איזון.</p></div>
-              <div class="soft-panel"><strong>תני לעצמך רשות</strong><p>אוכל זה לא עונש או פרס. זה <strong>דלק</strong> שהגוף שלך צריך כדי לחיות.</p></div>
+              <div class="soft-panel"><strong>תני לעצמך רשות</strong><p>אוכל זה לא עונש או פרס. זה <strong>דלק</strong> ש  גוף שלך צריך כדי לחיות.</p></div>
             </div>
           </div>
           <div class="quote-block"><strong>חשוב לדעת</strong><p>הגוף שלך יודע מה הוא צריך. הבעיה היא שלפעמים יש לנו הרבה "רעש" — דיאטות, השוואות, מודעות — שמפריע לנו לשמוע אותו. נסי לחזור לשאלה הפשוטה: <strong>"מה הגוף שלי צריך עכשיו?"</strong></p></div>
-          <p class="stage-end">סיום שלב 2 · הרעב הוא מסר, לא מבחן.</p>
         </div>
       </section>
 
-      <section id="body-image" class="stage">
-        <div class="section-shell">
+      <section id="body-image" class="section-shell">
+        <div class="max-w-5xl mx-auto">
           <p class="section-kicker">שלב שלישי</p>
           <h2 class="text-3xl md:text-5xl font-bold mb-4">דימוי גוף - המבט במראה</h2>
           <p class="text-lg text-[#54404c] mb-8">דימוי גוף זה לא איך את נראית — זה איך את <strong>מרגישה</strong> לגבי איך שאת נראית. וזה יכול להיות מאוד מורכב.</p>
@@ -663,12 +444,11 @@
             </div>
             <p>עכשיו תקראי את הרשימה הזו כשאת מרגישה רע לגבי הגוף. <strong>זכירת מה שהגוף עושה</strong> עוזרת לחזור לנקודה הנכונה.</p>
           </div>
-          <p class="stage-end">סיום שלב 3 · הדימוי שאת בונה מתחיל בשפה שאת מדברת לעצמך.</p>
         </div>
       </section>
 
-      <section id="movement" class="stage">
-        <div class="section-shell">
+      <section id="movement" class="section-shell">
+        <div class="max-w-5xl mx-auto">
           <p class="section-kicker">שלב רביעי</p>
           <h2 class="text-3xl md:text-5xl font-bold mb-4">תנועה - להזיז את הגוף</h2>
           <p class="text-lg text-[#54404c] mb-8">תנועה זה לא על "לרדת במשקל". זה על להרגיש טוב, לשחרר מתח, ולתת לגוף לעשות מה שהוא נועד לעשות.</p>
@@ -714,12 +494,11 @@
             </div>
           </div>
           <div class="quote-block"><strong>המפתח</strong><p>תנועה זה לא על "לתקן" את הגוף. זה על <strong>לחגוג מה שהגוף יכול לעשות</strong>. כל פעם שאת זזה, את אומרת לגוף: "תודה שאת כאן. תודה שאת חזקה. תודה שאת נושאת אותי."</p></div>
-          <p class="stage-end">סיום שלב 4 · התנועה הנכונה היא זו שמשאירה אותך עם תחושת כוח.</p>
         </div>
       </section>
 
-      <section id="security" class="stage">
-        <div class="section-shell">
+      <section id="security" class="section-shell">
+        <div class="max-w-5xl mx-auto">
           <p class="section-kicker">שלב חמישי</p>
           <h2 class="text-3xl md:text-5xl font-bold mb-4">ביטחון - להרגיש בטוחה בתוך עצמך</h2>
           <p class="text-lg text-[#54404c] mb-8">ביטחון זה לא "לדעת שאני מושלמת". זה <strong>להרגיש בטוחה להיות מי שאני</strong> — עם כל הפגמים, השינויים, והלא-ודאות.</p>
@@ -769,11 +548,10 @@
               <p class="text-lg font-medium text-[#884b6a] italic">"זה בסדר להיות בתהליך. אני לא צריכה להיות מושלמת."</p>
             </div>
           </div>
-          <p class="stage-end">סיום שלב 5 · הביטחון נבנה בכל פעם שאת בוחרת להיות בעד עצמך.</p>
         </div>
       </section>
 
-      <section class="summary-shell">
+      <section class="section-shell">
         <div class="max-w-4xl mx-auto text-center">
           <p class="section-kicker">סיכום</p>
           <h2 class="text-3xl md:text-5xl font-bold mb-7">הגוף שלך הוא הבית שלך</h2>
@@ -782,7 +560,7 @@
             <p>בגיל שלך, הגוף משתנה כל כך מהר שלפעמים קשה לעמוד בקצב. זה לגיטימי להרגיש מבולבלת, עייפה, לא בטוחה. אבל זכרי: <em>הגוף שלך לא האויב שלך</em>. הוא לא משהו שצריך "לתקן" או "לשנות" — הוא הכלי שמאפשר לך לחוות את החיים.</p>
             <p>ככל שתלמדי <strong>להקשיב לו, לכבד אותו, ולטפל בו בחיבה</strong> — הוא ילמד לתת לך בחזרה אנרגיה, ביטחון, ושמחה.</p>
           </div>
-          <div class="quote-block max-w-2xl mx-auto text-right">
+          <div class="quote-block max-w-2xl mx-auto mb-10 text-right">
             <p><strong>מחשבה אחרונה:</strong></p>
             <p class="text-xl font-medium italic">"הגוף שלי לא צריך להיראות בצורה מסוימת כדי שאני אהיה ראויה. הוא כבר עושה הרבה — ואני לומדת להעריך את זה."</p>
           </div>
@@ -790,10 +568,9 @@
       </section>
     </div>
 
-    <footer class="py-10 px-6">
+    <footer class="py-10 px-6 bg-[#2f2028] text-[#f4e8ee]">
       <div class="max-w-5xl mx-auto text-center">
         <span class="text-2xl font-bold block mb-3">הגוף שלי וההרגשה שלי</span>
-        <p class="text-[#d8c4ce] text-base">מרחב חקר רגשי-גופני לנערות בגיל ההתבגרות</p>
         <p class="text-[#9a7d8d] text-xs mt-4">© 2026 פורצות דרך</p>
       </div>
     </footer>
@@ -802,7 +579,6 @@
   <script>
     const defaultConfig = {
       site_title: 'הגוף שלי וההרגשה שלי',
-      hero_subtitle: 'מרחב חקר רגשי-גופני שמחבר בין מה שאת מרגישה לבין מה שהגוף שלך מספר לך.',
       background_color: '#fcf8f6',
       primary_color: '#6d3755',
       secondary_color: '#8b5573',
@@ -818,8 +594,6 @@
       if (navTitle) navTitle.textContent = config.site_title || defaultConfig.site_title;
       const heroTitle = document.getElementById('hero-title');
       if (heroTitle) heroTitle.textContent = config.site_title || defaultConfig.site_title;
-      const heroSubtitle = document.getElementById('hero-subtitle');
-      if (heroSubtitle) heroSubtitle.textContent = config.hero_subtitle || defaultConfig.hero_subtitle;
     }
 
     function mapToCapabilities(config) {
@@ -839,8 +613,7 @@
 
     function mapToEditPanelValues(config) {
       return new Map([
-        ['site_title', config.site_title || defaultConfig.site_title],
-        ['hero_subtitle', config.hero_subtitle || defaultConfig.hero_subtitle]
+        ['site_title', config.site_title || defaultConfig.site_title]
       ]);
     }
 
@@ -848,54 +621,37 @@
       window.elementSdk.init({ defaultConfig, onConfigChange, mapToCapabilities, mapToEditPanelValues });
     }
 
-    const sections = document.querySelectorAll('section[id]');
-    const navLinks = document.querySelectorAll('.nav-link');
-    const routeItems = document.querySelectorAll('.route-track li');
-
-    const setActive = () => {
-      let current = '';
-      sections.forEach((section) => {
-        if (window.scrollY >= section.offsetTop - 180) current = section.getAttribute('id');
-      });
-
-      navLinks.forEach((link) => {
-        link.classList.toggle('active', link.getAttribute('href') === `#${current}`);
-      });
-
-      routeItems.forEach((item) => {
-        item.classList.toggle('is-active', item.dataset.step === current);
-      });
-    };
-
     const body = document.body;
     const startBtn = document.getElementById('start-domain');
-    const progressFill = document.getElementById('entry-progress-fill');
-    const hero = document.getElementById('entry-hero');
-
     if (startBtn) {
       startBtn.addEventListener('click', (event) => {
         event.preventDefault();
-        progressFill.style.width = '100%';
-        body.classList.add('is-entering');
+        body.classList.add('entered');
         body.classList.remove('pre-entry');
 
         setTimeout(() => {
-          body.classList.add('entered');
-          body.classList.remove('is-entering');
-          if (hero) hero.setAttribute('aria-hidden', 'true');
           const fatigue = document.getElementById('fatigue');
-          if (fatigue) {
-            fatigue.scrollIntoView({ behavior: 'smooth', block: 'start' });
-          }
-          window.scrollTo({ top: fatigue ? fatigue.offsetTop - 80 : 0, behavior: 'smooth' });
-        }, 420);
+          if (fatigue) fatigue.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }, 320);
       });
     }
 
+    const sections = document.querySelectorAll('section[id]');
+    const navLinks = document.querySelectorAll('.nav-link');
+    const setActive = () => {
+      let current = '';
+      sections.forEach((section) => {
+        if (window.scrollY >= section.offsetTop - 150) current = section.getAttribute('id');
+      });
+      navLinks.forEach((link) => {
+        link.classList.toggle('active', link.getAttribute('href') === `#${current}`);
+      });
+    };
     window.addEventListener('scroll', setActive);
     setActive();
   </script>
 
+  <script src="../js/scroll-lock.js"></script>
   <script>
     if ('serviceWorker' in navigator) {
       window.addEventListener('load', function() {
