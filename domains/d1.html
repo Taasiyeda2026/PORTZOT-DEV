@@ -10,165 +10,431 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>הגוף שלי וההרגשה שלי | מרחב חקר</title>
   <script src="https://cdn.tailwindcss.com"></script>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;700;800&family=Varela+Round&display=swap" rel="stylesheet">
 
   <style>
-    * { box-sizing: border-box; font-family: 'Heebo', 'Varela Round', sans-serif; }
+    @font-face {
+      font-family: 'IBM Plex Sans Hebrew';
+      src: url('../fonts/IBMPlexSansHebrew-Regular.ttf') format('truetype');
+      font-weight: 400;
+      font-style: normal;
+      font-display: swap;
+    }
+    @font-face {
+      font-family: 'IBM Plex Sans Hebrew';
+      src: url('../fonts/IBMPlexSansHebrew-SemiBold.ttf') format('truetype');
+      font-weight: 600;
+      font-style: normal;
+      font-display: swap;
+    }
+    @font-face {
+      font-family: 'IBM Plex Sans Hebrew';
+      src: url('../fonts/IBMPlexSansHebrew-Bold.ttf') format('truetype');
+      font-weight: 700;
+      font-style: normal;
+      font-display: swap;
+    }
+
+    :root {
+      --bg: #f6f1f7;
+      --surface: #fff;
+      --text: #221722;
+      --muted: #5e4c5d;
+      --primary: #6b3a7f;
+      --secondary: #9158a7;
+      --accent: #ef7da0;
+      --line: #e8d9ee;
+      --shadow: 0 20px 45px rgba(58, 33, 68, 0.12);
+    }
+
+    * {
+      box-sizing: border-box;
+      font-family: 'IBM Plex Sans Hebrew', sans-serif;
+    }
+
     html { scroll-behavior: smooth; }
+
     body {
-      background: #f8f3ef;
-      color: #23161d;
+      margin: 0;
+      background:
+        radial-gradient(circle at 8% 10%, #fbe3ed 0, transparent 32%),
+        radial-gradient(circle at 90% 3%, #e4dbff 0, transparent 28%),
+        var(--bg);
+      color: var(--text);
       overflow-x: hidden;
     }
+
+    body.pre-entry { overflow: hidden; }
+
     .page-shell {
-      max-width: 1080px;
+      max-width: 1120px;
       margin: 0 auto;
-      background: #fcf8f6;
-      box-shadow: 0 20px 50px rgba(46, 31, 38, 0.08);
+      background: linear-gradient(180deg, rgba(255,255,255,0.94), rgba(254,252,255,0.95));
+      box-shadow: 0 26px 60px rgba(40, 24, 49, 0.12);
+      min-height: 100vh;
     }
+
+    .main-nav {
+      border-bottom: 1px solid var(--line);
+      background: rgba(255, 255, 255, 0.72);
+      backdrop-filter: blur(14px);
+    }
+
     .pill-nav {
-      border: 1px solid #e8dae1;
+      border: 1px solid rgba(120, 85, 136, 0.24);
       border-radius: 999px;
-      padding: 6px 12px;
+      padding: 8px 14px;
       font-size: 0.9rem;
-      color: #4b3341;
-      transition: all 0.2s ease;
-      background: rgba(255,255,255,0.88);
+      color: #493748;
+      transition: all 0.22s ease;
+      background: linear-gradient(180deg, #fff, #f9f4fc);
       text-decoration: none;
       white-space: nowrap;
+      box-shadow:
+        inset 0 1px 0 rgba(255,255,255,0.9),
+        0 4px 10px rgba(62, 34, 71, 0.08),
+        0 1px 2px rgba(62, 34, 71, 0.16);
     }
-    .pill-nav:hover { background: #fff; border-color: #c89bb2; }
+
+    .pill-nav:hover {
+      transform: translateY(-1px);
+      border-color: rgba(120, 85, 136, 0.5);
+      box-shadow:
+        inset 0 1px 0 rgba(255,255,255,0.95),
+        0 7px 16px rgba(83, 48, 95, 0.18);
+    }
+
     .pill-nav.active {
-      background: #6d3755;
+      background: linear-gradient(180deg, #7f4b96, #663a7a);
       color: #fff;
-      border-color: #6d3755;
+      border-color: #6a3f7d;
+      box-shadow:
+        inset 0 1px 0 rgba(255,255,255,0.2),
+        0 6px 16px rgba(66, 37, 78, 0.3);
     }
+
     .hero-shell {
-      padding: 7rem 1.5rem 3.5rem;
-      background: linear-gradient(180deg, #fbf5f2 0%, #f8f3ef 100%);
-      border-bottom: 1px solid #efdee5;
+      min-height: 100svh;
+      padding: clamp(7.2rem, 9vh, 8.4rem) 1.4rem 2.2rem;
+      display: flex;
+      align-items: center;
       position: relative;
       overflow: hidden;
+      border-bottom: 1px solid var(--line);
+      background:
+        linear-gradient(145deg, #fdf8ff 0%, #f4eef9 48%, #f8f0f5 100%);
+      transition: transform .7s ease, opacity .6s ease, min-height .5s ease, padding .5s ease;
     }
+
     .hero-shell::before,
     .hero-shell::after {
       content: "";
       position: absolute;
       border-radius: 999px;
-      filter: blur(40px);
-      opacity: 0.45;
+      pointer-events: none;
+      filter: blur(10px);
+      opacity: 0.8;
+    }
+
+    .hero-shell::before {
+      width: 330px;
+      height: 330px;
+      left: -84px;
+      top: -70px;
+      background: radial-gradient(circle, rgba(241,130,169,0.56), transparent 67%);
+    }
+
+    .hero-shell::after {
+      width: 380px;
+      height: 380px;
+      right: -104px;
+      bottom: -120px;
+      background: radial-gradient(circle, rgba(156,105,215,0.5), transparent 64%);
+    }
+
+    .hero-layout {
+      max-width: 1020px;
+      margin: 0 auto;
+      width: 100%;
+      display: grid;
+      grid-template-columns: repeat(12, minmax(0, 1fr));
+      gap: 1rem;
+      position: relative;
+      z-index: 2;
+    }
+
+    .entry-chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 7px 13px;
+      border-radius: 999px;
+      color: #6d3e80;
+      background: rgba(255, 255, 255, 0.76);
+      border: 1px solid rgba(146, 90, 170, 0.28);
+      font-size: 0.82rem;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      margin-bottom: 1.05rem;
+    }
+
+    .hero-title {
+      font-size: clamp(2.5rem, 6.8vw, 4.9rem);
+      line-height: 1.03;
+      font-weight: 700;
+      margin: 0 0 .95rem;
+      color: #241727;
+      text-wrap: balance;
+    }
+
+    .hero-desc {
+      font-size: clamp(1rem, 2.25vw, 1.22rem);
+      line-height: 1.7;
+      color: #453449;
+      margin: 0 0 1.4rem;
+      max-width: 37rem;
+    }
+
+    .start-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.45rem;
+      padding: 0.85rem 1.45rem;
+      border-radius: 999px;
+      background: linear-gradient(140deg, #7f4799, #65347e);
+      color: #fff;
+      text-decoration: none;
+      font-weight: 600;
+      box-shadow:
+        inset 0 1px 0 rgba(255,255,255,0.24),
+        0 10px 20px rgba(79, 45, 95, 0.32);
+      transition: transform .2s ease, box-shadow .2s ease;
+    }
+
+    .start-btn:hover {
+      transform: translateY(-2px);
+      box-shadow:
+        inset 0 1px 0 rgba(255,255,255,0.32),
+        0 14px 24px rgba(79, 45, 95, 0.38);
+    }
+
+    .hero-visual {
+      min-height: 340px;
+      border-radius: 28px;
+      border: 1px solid rgba(164, 126, 179, 0.35);
+      background:
+        radial-gradient(circle at 78% 17%, rgba(239,125,160,0.42), transparent 42%),
+        radial-gradient(circle at 20% 82%, rgba(126,89,219,0.34), transparent 46%),
+        linear-gradient(145deg, #fff, #f3ebfb);
+      box-shadow: 0 22px 36px rgba(77, 46, 90, 0.12);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-visual::before,
+    .hero-visual::after {
+      content: "";
+      position: absolute;
+      border-radius: 999px;
+      border: 1px solid rgba(126, 82, 145, 0.26);
+    }
+
+    .hero-visual::before { width: 210px; height: 210px; right: 36px; top: 34px; }
+    .hero-visual::after { width: 130px; height: 130px; left: 30px; bottom: 28px; }
+
+    .entry-progress {
+      margin-top: 1.1rem;
+      width: min(380px, 100%);
+      height: 5px;
+      border-radius: 999px;
+      background: rgba(81, 54, 92, 0.14);
+      overflow: hidden;
+    }
+
+    .entry-progress span {
+      display: block;
+      width: 0%;
+      height: 100%;
+      background: linear-gradient(90deg, #f07aa1, #8b58b6);
+      transition: width .45s ease;
+    }
+
+    .content-locked { display: none; }
+    body.entered .content-locked { display: block; }
+
+    body.entered .hero-shell {
+      transform: translateY(-26px);
+      opacity: 0;
+      min-height: 0;
+      padding-top: 0;
+      padding-bottom: 0;
+      border-bottom-width: 0;
       pointer-events: none;
     }
-    .hero-shell::before {
-      width: 280px;
-      height: 280px;
-      background: #e6cad7;
-      top: -60px;
-      left: -100px;
+
+    body.entered .hero-shell > * { display: none; }
+
+    .domain-route {
+      position: sticky;
+      top: 66px;
+      z-index: 32;
+      padding: .65rem 1rem;
+      border-bottom: 1px solid var(--line);
+      background: rgba(252, 247, 255, 0.92);
+      backdrop-filter: blur(10px);
     }
-    .hero-shell::after {
-      width: 320px;
-      height: 320px;
-      background: #d7c3d8;
-      bottom: -130px;
-      right: -80px;
+
+    .route-track {
+      max-width: 900px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(5, minmax(0, 1fr));
+      gap: .45rem;
+      list-style: none;
+      padding: 0;
     }
+
+    .route-track li {
+      border: 1px solid #e3d2ea;
+      border-radius: 12px;
+      background: #fff;
+      padding: .45rem .55rem;
+      box-shadow: 0 6px 12px rgba(77, 46, 90, 0.05);
+      font-size: .74rem;
+      color: #6b596d;
+      text-align: center;
+      transition: all .22s ease;
+    }
+
+    .route-track li.is-active {
+      border-color: #9158a7;
+      color: #5b316e;
+      transform: translateY(-1px);
+      box-shadow: 0 10px 14px rgba(101, 57, 119, 0.15);
+      font-weight: 600;
+    }
+
+    .stage {
+      padding: 4.6rem 1.2rem;
+      position: relative;
+    }
+
+    .stage::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: min(860px, 92%);
+      border-top: 1px dashed rgba(126, 85, 147, 0.36);
+    }
+
+    .stage:nth-of-type(odd) {
+      background: linear-gradient(180deg, rgba(255,255,255,0.74), rgba(251,246,255,0.62));
+    }
+
+    .stage:nth-of-type(even) {
+      background: linear-gradient(180deg, rgba(253,248,255,0.86), rgba(248,241,252,0.66));
+    }
+
     .section-shell {
-      padding: 5rem 1.5rem;
-      border-bottom: 1px solid #efdee5;
+      max-width: 1020px;
+      margin: 0 auto;
+      border: 1px solid #e8d9ef;
+      border-radius: 28px;
+      padding: 2rem 1.2rem;
+      background: rgba(255,255,255,0.9);
+      box-shadow: 0 14px 30px rgba(70, 41, 82, 0.08);
     }
+
     .section-kicker {
       display: inline-block;
-      font-size: 0.78rem;
-      letter-spacing: 0.1em;
+      font-size: .79rem;
+      letter-spacing: 0.09em;
+      color: #7d4f92;
+      margin-bottom: .58rem;
+      font-weight: 600;
       text-transform: uppercase;
-      color: #7b4a64;
-      margin-bottom: 0.65rem;
-      font-weight: 700;
     }
+
     .section-grid {
       display: grid;
       grid-template-columns: repeat(12, minmax(0, 1fr));
       gap: 1rem;
     }
+
     .editorial-card {
       background: #fff;
-      border: 1px solid #ecdde5;
-      border-radius: 16px;
-      padding: 1.4rem;
-      box-shadow: 0 10px 25px rgba(49, 31, 40, 0.05);
+      border: 1px solid #eadcf1;
+      border-radius: 17px;
+      padding: 1.35rem;
+      box-shadow: 0 10px 18px rgba(54, 34, 62, 0.05);
     }
+
     .soft-panel {
-      background: #f6eef2;
-      border: 1px solid #e9d7e1;
-      border-radius: 16px;
-      padding: 1.4rem;
+      background: #f8f2fb;
+      border: 1px solid #e6d5f0;
+      border-radius: 14px;
+      padding: 1rem;
     }
+
     .quote-block {
-      border-right: 4px solid #8c4969;
-      background: #f4eaef;
+      border-right: 4px solid #864ca1;
+      background: #f6eefb;
       border-radius: 12px;
-      padding: 1rem 1.2rem;
-      color: #3a2731;
+      padding: 1rem 1.1rem;
+      color: #392742;
     }
+
     .mini-note {
-      font-size: 0.9rem;
-      color: #6a5260;
-      background: #fbf7f9;
-      border: 1px dashed #d8becd;
+      font-size: .9rem;
+      color: #5f4c64;
+      background: #fdf8ff;
+      border: 1px dashed #cdb3d9;
       border-radius: 12px;
-      padding: 0.7rem 0.9rem;
+      padding: .78rem .9rem;
     }
-    .visual-abstract {
-      min-height: 280px;
-      border-radius: 24px;
-      border: 1px solid #ead7e1;
-      background:
-        radial-gradient(circle at 75% 20%, rgba(140, 73, 105, 0.24), transparent 40%),
-        radial-gradient(circle at 20% 80%, rgba(193, 145, 169, 0.26), transparent 46%),
-        linear-gradient(135deg, #fff 0%, #f6edf2 100%);
-      position: relative;
-      overflow: hidden;
+
+    .stage-end {
+      margin-top: 1.25rem;
+      border-radius: 12px;
+      border: 1px dashed #d4bfdf;
+      background: linear-gradient(90deg, rgba(253,246,255,0.96), rgba(248,241,252,0.92));
+      padding: .8rem 1rem;
+      color: #5e4c64;
+      font-size: .92rem;
     }
-    .visual-abstract::before,
-    .visual-abstract::after {
-      content: "";
-      position: absolute;
-      border-radius: 999px;
-      border: 1px solid rgba(125, 73, 98, 0.25);
+
+    .summary-shell {
+      padding: 5rem 1.2rem;
+      background: linear-gradient(180deg, #f7effb, #f2eaf7);
     }
-    .visual-abstract::before {
-      width: 200px;
-      height: 200px;
-      top: 26px;
-      right: 44px;
+
+    footer {
+      background: #2c2031;
+      color: #f2e8f7;
     }
-    .visual-abstract::after {
-      width: 145px;
-      height: 145px;
-      bottom: 24px;
-      left: 40px;
-    }
+
     @media (max-width: 900px) {
-      .hero-shell { padding-top: 6rem; padding-bottom: 2.5rem; }
-      .section-shell { padding: 3.5rem 1rem; }
+      .hero-shell { padding-top: 6.5rem; }
+      .hero-visual { min-height: 230px; }
+      .domain-route { top: 62px; }
+      .stage { padding: 3.6rem 1rem; }
+      .route-track { grid-template-columns: 1fr; }
     }
+
     @media (max-width: 640px) {
-      .hero-shell { padding-top: 5.4rem; }
-      .visual-abstract { min-height: 180px; }
+      .pill-nav { padding: 7px 12px; font-size: .84rem; }
+      .section-shell { border-radius: 20px; padding: 1.4rem .9rem; }
+      .domain-route { padding: .55rem .8rem; }
+      .hero-shell { min-height: 100dvh; }
     }
-    .scroll-locked { overflow: hidden !important; height: 100vh !important; }
-    .scroll-locked .content-locked { display: none !important; }
-    .scroll-unlocked .content-locked { display: block; }
   </style>
 </head>
-<body class="h-full min-h-screen">
+<body class="h-full min-h-screen pre-entry">
   <div class="page-shell">
-    <nav class="fixed top-0 left-0 right-0 z-50 bg-[#fcf8f6]/90 backdrop-blur border-b border-[#eadbe3]">
+    <nav class="main-nav fixed top-0 left-0 right-0 z-50">
       <div class="max-w-5xl mx-auto px-4 py-3 flex items-center justify-between gap-3">
-        <span id="nav-title" class="text-base md:text-lg font-bold text-[#432a37]">הגוף שלי וההרגשה שלי</span>
+        <span id="nav-title" class="text-base md:text-lg font-bold text-[#3f2940]">הגוף שלי וההרגשה שלי</span>
         <div class="flex items-center gap-2 overflow-x-auto pb-1">
           <a href="#fatigue" class="pill-nav nav-link">עייפות</a>
           <a href="#hunger" class="pill-nav nav-link">רעב</a>
@@ -180,24 +446,35 @@
       </div>
     </nav>
 
-    <section class="hero-shell">
-      <div class="max-w-5xl mx-auto section-grid items-center relative z-10">
+    <section class="hero-shell" id="entry-hero">
+      <div class="hero-layout items-center">
         <div class="col-span-12 lg:col-span-7">
-          <p class="section-kicker">Domain 01</p>
-          <h1 id="hero-title" class="text-5xl md:text-7xl font-extrabold leading-[1.05] text-[#24161d] mb-4">הגוף שלי וההרגשה שלי</h1>
-          <p id="hero-subtitle" class="text-lg md:text-xl text-[#5d4754] mb-4">מסע להבנת הקשר בין הגוף הפיזי לרגשות הפנימיים</p>
-          <p class="text-base md:text-lg leading-relaxed text-[#3e2e38] mb-7 max-w-2xl">הגוף שלך הוא הבית שלך. זה המקום שבו את חיה, כל רגע, כל יום. ובגיל ההתבגרות, הגוף משתנה במהירות — לפעמים מהר יותר ממה שאת מספיקה להרגיש בנוח איתו.</p>
-          <a href="#fatigue" class="inline-flex items-center gap-2 bg-[#6d3755] hover:bg-[#5a2d46] transition-colors text-white px-6 py-3 rounded-full font-medium">בואי נתחיל</a>
+          <p class="entry-chip">Domain 01 · כניסה למרחב</p>
+          <h1 id="hero-title" class="hero-title">הגוף שלי וההרגשה שלי</h1>
+          <p id="hero-subtitle" class="hero-desc">מרחב חקר רגשי-גופני שמחבר בין מה שאת מרגישה לבין מה שהגוף שלך מספר לך.</p>
+          <p class="hero-desc">הגוף שלך הוא הבית שלך. זה המקום שבו את חיה, כל רגע, כל יום. ובגיל ההתבגרות, הגוף משתנה במהירות — לפעמים מהר יותר ממה שאת מספיקה להרגיש בנוח איתו.</p>
+          <a id="start-domain" href="#fatigue" class="start-btn">בואי נתחיל <span aria-hidden="true">←</span></a>
+          <div class="entry-progress" aria-hidden="true"><span id="entry-progress-fill"></span></div>
         </div>
         <div class="col-span-12 lg:col-span-5">
-          <div class="visual-abstract"></div>
+          <div class="hero-visual"></div>
         </div>
       </div>
     </section>
 
     <div id="locked-content" class="content-locked">
-      <section id="fatigue" class="section-shell">
-        <div class="max-w-5xl mx-auto">
+      <div class="domain-route" aria-label="התקדמות בין שלבים">
+        <ol class="route-track">
+          <li data-step="fatigue">שלב 1 · עייפות</li>
+          <li data-step="hunger">שלב 2 · רעב</li>
+          <li data-step="body-image">שלב 3 · דימוי גוף</li>
+          <li data-step="movement">שלב 4 · תנועה</li>
+          <li data-step="security">שלב 5 · ביטחון</li>
+        </ol>
+      </div>
+
+      <section id="fatigue" class="stage">
+        <div class="section-shell">
           <p class="section-kicker">שלב ראשון</p>
           <h2 class="text-3xl md:text-5xl font-bold mb-4">העייפות - למה אני כל כך עייפה?</h2>
           <p class="text-lg text-[#54404c] mb-8">להרגיש עייפה כל הזמן זו תחושה מאוד מוכרת לנערות בגיל ההתבגרות. אבל למה זה קורה?</p>
@@ -242,11 +519,12 @@
             </div>
           </div>
           <div class="quote-block"><strong>זכרי</strong><p>עייפות בגיל שלך היא <strong>לגיטימית</strong>. הגוף שלך עושה עבודה ענקית, גם כשנראה שאת "רק יושבת". אם את עייפה — זה לא אומר שאת עצלה. זה אומר שאת <em>אנושית</em>.</p></div>
+          <p class="stage-end">סיום שלב 1 · כשאת מזהה עייפות, כבר התחלת להקשיב לגוף.</p>
         </div>
       </section>
 
-      <section id="hunger" class="section-shell">
-        <div class="max-w-5xl mx-auto">
+      <section id="hunger" class="stage">
+        <div class="section-shell">
           <p class="section-kicker">שלב שני</p>
           <h2 class="text-3xl md:text-5xl font-bold mb-4">הרעב - למה זה כל כך מבלבל?</h2>
           <p class="text-lg text-[#54404c] mb-8">הרעב בגיל ההתבגרות יכול להיות הרפתקה משלו — לפעמים את רעבה כל הזמן, ולפעמים בכלל לא רוצה לאכול.</p>
@@ -277,15 +555,16 @@
               <div class="soft-panel"><strong>הקשיבי לגוף</strong><p>שאלי את עצמך: "האם אני רעבה פיזית?" אם כן — אכלי. אם לא — נסי להבין מה את באמת צריכה.</p></div>
               <div class="soft-panel"><strong>אכלי ארוחות קבועות</strong><p>שלוש ארוחות + חטיפים בריאים. הגוף צריך דלק קבוע, לא רק פעם ביום.</p></div>
               <div class="soft-panel"><strong>אין "אוכל רע"</strong><p>גלידה, שוקולד, פיצה — אלה לא אויבים. זה בסדר ליהנות מהם. המפתח הוא איזון.</p></div>
-              <div class="soft-panel"><strong>תני לעצמך רשות</strong><p>אוכל זה לא עונש או פרס. זה <strong>דלק</strong> ש  גוף שלך צריך כדי לחיות.</p></div>
+              <div class="soft-panel"><strong>תני לעצמך רשות</strong><p>אוכל זה לא עונש או פרס. זה <strong>דלק</strong> שהגוף שלך צריך כדי לחיות.</p></div>
             </div>
           </div>
           <div class="quote-block"><strong>חשוב לדעת</strong><p>הגוף שלך יודע מה הוא צריך. הבעיה היא שלפעמים יש לנו הרבה "רעש" — דיאטות, השוואות, מודעות — שמפריע לנו לשמוע אותו. נסי לחזור לשאלה הפשוטה: <strong>"מה הגוף שלי צריך עכשיו?"</strong></p></div>
+          <p class="stage-end">סיום שלב 2 · הרעב הוא מסר, לא מבחן.</p>
         </div>
       </section>
 
-      <section id="body-image" class="section-shell">
-        <div class="max-w-5xl mx-auto">
+      <section id="body-image" class="stage">
+        <div class="section-shell">
           <p class="section-kicker">שלב שלישי</p>
           <h2 class="text-3xl md:text-5xl font-bold mb-4">דימוי גוף - המבט במראה</h2>
           <p class="text-lg text-[#54404c] mb-8">דימוי גוף זה לא איך את נראית — זה איך את <strong>מרגישה</strong> לגבי איך שאת נראית. וזה יכול להיות מאוד מורכב.</p>
@@ -340,11 +619,12 @@
             </div>
             <p>עכשיו תקראי את הרשימה הזו כשאת מרגישה רע לגבי הגוף. <strong>זכירת מה שהגוף עושה</strong> עוזרת לחזור לנקודה הנכונה.</p>
           </div>
+          <p class="stage-end">סיום שלב 3 · הדימוי שאת בונה מתחיל בשפה שאת מדברת לעצמך.</p>
         </div>
       </section>
 
-      <section id="movement" class="section-shell">
-        <div class="max-w-5xl mx-auto">
+      <section id="movement" class="stage">
+        <div class="section-shell">
           <p class="section-kicker">שלב רביעי</p>
           <h2 class="text-3xl md:text-5xl font-bold mb-4">תנועה - להזיז את הגוף</h2>
           <p class="text-lg text-[#54404c] mb-8">תנועה זה לא על "לרדת במשקל". זה על להרגיש טוב, לשחרר מתח, ולתת לגוף לעשות מה שהוא נועד לעשות.</p>
@@ -390,11 +670,12 @@
             </div>
           </div>
           <div class="quote-block"><strong>המפתח</strong><p>תנועה זה לא על "לתקן" את הגוף. זה על <strong>לחגוג מה שהגוף יכול לעשות</strong>. כל פעם שאת זזה, את אומרת לגוף: "תודה שאת כאן. תודה שאת חזקה. תודה שאת נושאת אותי."</p></div>
+          <p class="stage-end">סיום שלב 4 · התנועה הנכונה היא זו שמשאירה אותך עם תחושת כוח.</p>
         </div>
       </section>
 
-      <section id="security" class="section-shell">
-        <div class="max-w-5xl mx-auto">
+      <section id="security" class="stage">
+        <div class="section-shell">
           <p class="section-kicker">שלב חמישי</p>
           <h2 class="text-3xl md:text-5xl font-bold mb-4">ביטחון - להרגיש בטוחה בתוך עצמך</h2>
           <p class="text-lg text-[#54404c] mb-8">ביטחון זה לא "לדעת שאני מושלמת". זה <strong>להרגיש בטוחה להיות מי שאני</strong> — עם כל הפגמים, השינויים, והלא-ודאות.</p>
@@ -444,10 +725,11 @@
               <p class="text-lg font-medium text-[#884b6a] italic">"זה בסדר להיות בתהליך. אני לא צריכה להיות מושלמת."</p>
             </div>
           </div>
+          <p class="stage-end">סיום שלב 5 · הביטחון נבנה בכל פעם שאת בוחרת להיות בעד עצמך.</p>
         </div>
       </section>
 
-      <section class="section-shell">
+      <section class="summary-shell">
         <div class="max-w-4xl mx-auto text-center">
           <p class="section-kicker">סיכום</p>
           <h2 class="text-3xl md:text-5xl font-bold mb-7">הגוף שלך הוא הבית שלך</h2>
@@ -456,20 +738,18 @@
             <p>בגיל שלך, הגוף משתנה כל כך מהר שלפעמים קשה לעמוד בקצב. זה לגיטימי להרגיש מבולבלת, עייפה, לא בטוחה. אבל זכרי: <em>הגוף שלך לא האויב שלך</em>. הוא לא משהו שצריך "לתקן" או "לשנות" — הוא הכלי שמאפשר לך לחוות את החיים.</p>
             <p>ככל שתלמדי <strong>להקשיב לו, לכבד אותו, ולטפל בו בחיבה</strong> — הוא ילמד לתת לך בחזרה אנרגיה, ביטחון, ושמחה.</p>
           </div>
-          <div class="quote-block max-w-2xl mx-auto mb-10 text-right">
+          <div class="quote-block max-w-2xl mx-auto text-right">
             <p><strong>מחשבה אחרונה:</strong></p>
             <p class="text-xl font-medium italic">"הגוף שלי לא צריך להיראות בצורה מסוימת כדי שאני אהיה ראויה. הוא כבר עושה הרבה — ואני לומדת להעריך את זה."</p>
           </div>
-          <a href="#fatigue" class="inline-flex items-center gap-2 bg-[#6d3755] hover:bg-[#5a2d46] transition-colors text-white px-7 py-3 rounded-full font-medium">לחזור להתחלה</a>
         </div>
       </section>
     </div>
 
-    <footer class="py-10 px-6 bg-[#2f2028] text-[#f4e8ee]">
+    <footer class="py-10 px-6">
       <div class="max-w-5xl mx-auto text-center">
         <span class="text-2xl font-bold block mb-3">הגוף שלי וההרגשה שלי</span>
-        <p class="text-[#d8c4ce] text-base mb-3">מסע להבנת הקשר בין הגוף הפיזי לרגשות הפנימיים</p>
-        <p class="text-[#ba9fad] text-sm">תוכנית חינוכית לנערות | מתוך הבנה, מודעות וחיבה לגוף</p>
+        <p class="text-[#d8c4ce] text-base">מרחב חקר רגשי-גופני לנערות בגיל ההתבגרות</p>
         <p class="text-[#9a7d8d] text-xs mt-4">© 2026 פורצות דרך</p>
       </div>
     </footer>
@@ -478,7 +758,7 @@
   <script>
     const defaultConfig = {
       site_title: 'הגוף שלי וההרגשה שלי',
-      hero_subtitle: 'מסע להבנת הקשר בין הגוף הפיזי לרגשות הפנימיים',
+      hero_subtitle: 'מרחב חקר רגשי-גופני שמחבר בין מה שאת מרגישה לבין מה שהגוף שלך מספר לך.',
       background_color: '#fcf8f6',
       primary_color: '#6d3755',
       secondary_color: '#8b5573',
@@ -526,20 +806,47 @@
 
     const sections = document.querySelectorAll('section[id]');
     const navLinks = document.querySelectorAll('.nav-link');
+    const routeItems = document.querySelectorAll('.route-track li');
+
     const setActive = () => {
       let current = '';
       sections.forEach((section) => {
-        if (window.scrollY >= section.offsetTop - 150) current = section.getAttribute('id');
+        if (window.scrollY >= section.offsetTop - 180) current = section.getAttribute('id');
       });
+
       navLinks.forEach((link) => {
         link.classList.toggle('active', link.getAttribute('href') === `#${current}`);
       });
+
+      routeItems.forEach((item) => {
+        item.classList.toggle('is-active', item.dataset.step === current);
+      });
     };
+
+    const body = document.body;
+    const startBtn = document.getElementById('start-domain');
+    const progressFill = document.getElementById('entry-progress-fill');
+
+    if (startBtn) {
+      startBtn.addEventListener('click', (event) => {
+        event.preventDefault();
+        progressFill.style.width = '100%';
+        body.classList.add('entered');
+        body.classList.remove('pre-entry');
+
+        setTimeout(() => {
+          const fatigue = document.getElementById('fatigue');
+          if (fatigue) {
+            fatigue.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          }
+        }, 130);
+      });
+    }
+
     window.addEventListener('scroll', setActive);
     setActive();
   </script>
 
-  <script src="../js/scroll-lock.js"></script>
   <script>
     if ('serviceWorker' in navigator) {
       window.addEventListener('load', function() {
