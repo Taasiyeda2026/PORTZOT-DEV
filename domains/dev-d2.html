@@ -1,1 +1,561 @@
+<!doctype html>
+<html lang="he" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>תחום 1 | יש ימים שבהם את לא באמת יודעת מה מציק לך</title>
+  <link rel="icon" type="image/png" href="../icon/favicon.png">
+  <link rel="manifest" href="../manifest.json">
+  <meta name="theme-color" content="#2A1D2F">
+  <style>
+    @font-face {
+      font-family: 'Alef';
+      src: url('../fonts/Alef-regular.woff') format('woff');
+      font-weight: 400;
+      font-style: normal;
+      font-display: swap;
+    }
 
+    @font-face {
+      font-family: 'Alef';
+      src: url('../fonts/Alef-bold.woff') format('woff');
+      font-weight: 700;
+      font-style: normal;
+      font-display: swap;
+    }
+
+    @font-face {
+      font-family: 'IBM Plex Sans Hebrew';
+      src: url('../fonts/IBMPlexSansHebrew-Regular.ttf') format('truetype');
+      font-weight: 400;
+      font-style: normal;
+      font-display: swap;
+    }
+
+    @font-face {
+      font-family: 'IBM Plex Sans Hebrew';
+      src: url('../fonts/IBMPlexSansHebrew-Medium.ttf') format('truetype');
+      font-weight: 500;
+      font-style: normal;
+      font-display: swap;
+    }
+
+    @font-face {
+      font-family: 'IBM Plex Sans Hebrew';
+      src: url('../fonts/IBMPlexSansHebrew-SemiBold.ttf') format('truetype');
+      font-weight: 600;
+      font-style: normal;
+      font-display: swap;
+    }
+
+    @font-face {
+      font-family: 'IBM Plex Sans Hebrew';
+      src: url('../fonts/IBMPlexSansHebrew-Bold.ttf') format('truetype');
+      font-weight: 700;
+      font-style: normal;
+      font-display: swap;
+    }
+
+    @font-face {
+      font-family: 'Gveret Levin';
+      src: url('../fonts/GveretLevin-Regular.ttf') format('truetype');
+      font-weight: 400;
+      font-style: normal;
+      font-display: swap;
+    }
+
+    @font-face {
+      font-family: 'Arimo';
+      src: url('../fonts/Arimo-Regular.ttf') format('truetype');
+      font-weight: 400;
+      font-style: normal;
+      font-display: swap;
+    }
+
+    @font-face {
+      font-family: 'Arimo';
+      src: url('../fonts/Arimo-Bold.ttf') format('truetype');
+      font-weight: 700;
+      font-style: normal;
+      font-display: swap;
+    }
+
+    :root {
+      --shell-1: #1F1722;
+      --shell-2: #241A28;
+      --shell-3: #2A1D2F;
+      --panel: #FFF9FC;
+      --panel-soft: #FCF7FA;
+      --surface: #F6ECF2;
+      --surface-2: #F4E8EF;
+      --text: #2D2430;
+      --meta: #8E7F89;
+      --accent: #744D67;
+      --accent-deep: #5E3B52;
+      --heading: #8A5975;
+      --heading-soft: #6E4560;
+      --rose: #D9B7C7;
+      --warm: #E9C7BA;
+      --border: #E7D9E2;
+      --divider: #E9DCE4;
+      --radius-main: 24px;
+      --radius-card: 22px;
+      --radius-pill: 999px;
+    }
+
+    * { box-sizing: border-box; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      direction: rtl;
+      color: var(--text);
+      font-family: 'IBM Plex Sans Hebrew', 'Arimo', sans-serif;
+      background:
+        radial-gradient(55rem 30rem at 88% 0%, rgba(217, 183, 199, 0.18), transparent 55%),
+        radial-gradient(45rem 28rem at 10% 100%, rgba(94, 59, 82, 0.28), transparent 55%),
+        linear-gradient(155deg, var(--shell-1), var(--shell-2) 50%, var(--shell-3));
+      line-height: 1.9;
+      padding: 16px;
+    }
+
+    .page-wrap {
+      max-width: 1080px;
+      margin: 0 auto;
+      background: linear-gradient(180deg, var(--panel), var(--panel-soft));
+      border: 1px solid rgba(233, 220, 228, 0.92);
+      border-radius: var(--radius-main);
+      box-shadow: 0 16px 46px rgba(10, 7, 13, 0.5), 0 52px 110px rgba(10, 7, 13, 0.35);
+      overflow: hidden;
+    }
+
+    .header {
+      background: linear-gradient(180deg, rgba(42, 29, 47, 0.96), rgba(36, 26, 40, 0.92));
+      color: #f8e6f0;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      padding: 14px 18px;
+      border-bottom: 1px solid rgba(217, 183, 199, 0.35);
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      backdrop-filter: blur(6px);
+    }
+
+    .domain-tag {
+      font-size: 0.93rem;
+      color: rgba(248, 230, 240, 0.92);
+      font-weight: 500;
+      letter-spacing: 0.01em;
+      font-family: 'IBM Plex Sans Hebrew', 'Arimo', sans-serif;
+    }
+
+    .back-link {
+      min-height: 44px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 8px 14px;
+      font-size: 0.92rem;
+      border: 1px solid rgba(217, 183, 199, 0.65);
+      border-radius: var(--radius-pill);
+      color: #f8e6f0;
+      background: rgba(255, 255, 255, 0.08);
+      text-decoration: none;
+      transition: transform 180ms ease, background 180ms ease;
+      font-family: 'IBM Plex Sans Hebrew', 'Arimo', sans-serif;
+      width: fit-content;
+    }
+
+    .back-link:hover,
+    .back-link:focus-visible {
+      background: rgba(255, 255, 255, 0.16);
+      transform: translateY(-1px);
+      outline: none;
+    }
+
+    .content { padding: 0 22px 28px; }
+
+    .hero {
+      position: relative;
+      padding: 30px 0 34px;
+      border-bottom: 1px solid var(--divider);
+    }
+
+    .hero::before,
+    .hero::after {
+      content: "";
+      position: absolute;
+      border-radius: 50%;
+      pointer-events: none;
+      filter: blur(3px);
+    }
+
+    .hero::before {
+      width: 280px;
+      height: 280px;
+      top: -90px;
+      left: -120px;
+      background: radial-gradient(circle, rgba(116, 77, 103, 0.27), transparent 65%);
+    }
+
+    .hero::after {
+      width: 240px;
+      height: 240px;
+      bottom: -110px;
+      right: -80px;
+      background: radial-gradient(circle, rgba(233, 199, 186, 0.26), transparent 65%);
+    }
+
+    .hero-tag {
+      display: inline-flex;
+      align-items: center;
+      padding: 5px 12px;
+      border: 1px solid var(--border);
+      border-radius: var(--radius-pill);
+      background: var(--surface);
+      font-size: 0.85rem;
+      color: var(--heading-soft);
+      margin-bottom: 14px;
+      min-height: 32px;
+    }
+
+    h1 {
+      margin: 0 0 14px;
+      font-family: 'Alef', 'IBM Plex Sans Hebrew', sans-serif;
+      color: var(--accent);
+      font-weight: 700;
+      font-size: clamp(2.15rem, 5vw, 3.6rem);
+      line-height: 1.12;
+      letter-spacing: -0.01em;
+      max-width: 17ch;
+    }
+
+    .hero-subtitle {
+      margin: 0 0 16px;
+      font-size: clamp(1.08rem, 2.2vw, 1.29rem);
+      color: var(--text);
+      max-width: 66ch;
+    }
+
+    .meta {
+      margin: 0 0 20px;
+      color: var(--meta);
+      font-size: clamp(0.88rem, 1.8vw, 1.02rem);
+      font-weight: 500;
+    }
+
+    .cta {
+      min-height: 44px;
+      border: 1px solid transparent;
+      border-radius: var(--radius-pill);
+      padding: 10px 20px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: fit-content;
+      font-family: 'IBM Plex Sans Hebrew', 'Arimo', sans-serif;
+      font-size: 0.96rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: transform 180ms ease, box-shadow 180ms ease, background 180ms ease;
+      text-decoration: none;
+    }
+
+    .cta-primary {
+      color: #fff;
+      background: linear-gradient(145deg, var(--accent), var(--accent-deep));
+      box-shadow: 0 6px 18px rgba(94, 59, 82, 0.25);
+    }
+
+    .cta-primary:hover,
+    .cta-primary:focus-visible {
+      transform: translateY(-1px);
+      box-shadow: 0 10px 24px rgba(94, 59, 82, 0.28);
+      outline: none;
+    }
+
+    .reveal-block {
+      margin-top: 36px;
+      background: linear-gradient(180deg, var(--surface), var(--surface-2));
+      border: 1px solid var(--border);
+      border-radius: var(--radius-card);
+      padding: 20px;
+      box-shadow: 0 8px 24px rgba(98, 68, 89, 0.12);
+    }
+
+    .reveal-block h2,
+    .article h2 {
+      margin: 0 0 16px;
+      font-family: 'IBM Plex Sans Hebrew', 'Arimo', sans-serif;
+      color: var(--heading);
+      font-size: clamp(1.46rem, 3.2vw, 2rem);
+      line-height: 1.26;
+      font-weight: 700;
+    }
+
+    .reveal-label {
+      display: block;
+      margin-bottom: 12px;
+      color: var(--heading-soft);
+      font-weight: 600;
+      font-size: 0.94rem;
+    }
+
+    p {
+      margin: 0 0 14px;
+      font-size: clamp(1.02rem, 2.2vw, 1.26rem);
+      line-height: 1.88;
+      color: var(--text);
+    }
+
+    strong {
+      color: var(--accent-deep);
+      font-weight: 700;
+    }
+
+    .intro-accent {
+      margin-top: 12px;
+      color: #9f6f89;
+      font-family: 'Gveret Levin', 'Alef', cursive;
+      font-size: clamp(1.22rem, 2.8vw, 1.56rem);
+    }
+
+    .article {
+      margin-top: 44px;
+      max-width: 760px;
+    }
+
+    .article section {
+      padding: 0 0 38px;
+      margin-bottom: 38px;
+      border-bottom: 1px solid var(--divider);
+    }
+
+    .article section:last-of-type {
+      border-bottom: none;
+      margin-bottom: 10px;
+    }
+
+    .quote-card {
+      margin: 24px 0 8px;
+      padding: 20px;
+      border-radius: var(--radius-card);
+      border-inline-start: 5px solid var(--rose);
+      background: #fff6fb;
+      box-shadow: 0 12px 30px rgba(116, 77, 103, 0.14);
+    }
+
+    .quote-card p {
+      margin: 0;
+      font-family: 'Alef', 'IBM Plex Sans Hebrew', sans-serif;
+      color: var(--heading-soft);
+      line-height: 1.42;
+      font-size: clamp(1.52rem, 3.8vw, 2.1rem);
+    }
+
+    .closing {
+      margin-top: 22px;
+      padding: 24px;
+      border-radius: var(--radius-card);
+      background: linear-gradient(160deg, #fff0f7, #f9edf4);
+      border: 1px solid var(--border);
+      box-shadow: 0 8px 24px rgba(116, 77, 103, 0.12);
+    }
+
+    .closing h2 { color: var(--accent); }
+
+    .footer-nav {
+      margin-top: 26px;
+      padding-top: 18px;
+      border-top: 1px solid var(--divider);
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+    }
+
+    .footer-label {
+      color: var(--meta);
+      font-size: 0.95rem;
+      margin: 0;
+    }
+
+    .footer-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .cta-soft {
+      color: var(--accent-deep);
+      border-color: var(--border);
+      background: #fff;
+    }
+
+    .cta-soft:hover,
+    .cta-soft:focus-visible {
+      background: #f9f2f6;
+      transform: translateY(-1px);
+      outline: none;
+    }
+
+    [hidden] {
+      display: none !important;
+    }
+
+    .is-revealed {
+      animation: reveal 500ms ease forwards;
+    }
+
+    @keyframes reveal {
+      from {
+        opacity: 0;
+        transform: translateY(12px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @media (min-width: 768px) {
+      body { padding: 40px; }
+      .content { padding: 0 56px 44px; }
+      .hero { padding-top: 42px; }
+      .reveal-block { padding: 28px 30px; }
+      .footer-nav { padding-bottom: 12px; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      *, *::before, *::after {
+        animation: none !important;
+        transition: none !important;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="page-wrap">
+    <header class="header">
+      <a class="back-link" href="./alldomains.html" aria-label="חזרה לכל התחומים">← חזרה</a>
+      <span class="domain-tag">תחום 1 מתוך 10</span>
+    </header>
+
+    <main class="content">
+      <section class="hero" aria-labelledby="hero-title">
+        <span class="hero-tag">תחום 1 מתוך 10</span>
+        <h1 id="hero-title">יש ימים שבהם את לא באמת יודעת מה מציק לך — רק שמשהו בפנים לא יושב בשקט</h1>
+        <p class="hero-subtitle">לפעמים זה מתחיל בעייפות, ממשיך ברעב שלא ברור מאיפה הוא הגיע, עובר דרך המראה, דרך הגוף, דרך הביטחון — ובסוף נשארת תחושה קטנה בבטן שאי אפשר תמיד להסביר, אבל גם אי אפשר להתעלם ממנה.</p>
+        <p class="meta">זמן קריאה: כ־7 דקות</p>
+        <button id="open-intro" class="cta cta-primary" type="button">בואי נתחיל</button>
+      </section>
+
+      <section id="intro" class="reveal-block" hidden aria-hidden="true">
+        <span class="reveal-label">לפני שמתחילות</span>
+        <p>יש תקופות שבהן הכול נראה רגיל מבחוץ — את קמה, הולכת, לומדת, מדברת, צוחקת, ממשיכה — אבל מבפנים משהו לא לגמרי מסתדר. לא תמיד יש לזה שם. לפעמים זו רק תחושת כובד קטנה, לפעמים בלבול, לפעמים עייפות שלא עוברת, ולפעמים פשוט הרגשה שהגוף והראש שלך לא בדיוק באותו קצב.</p>
+        <p>וזה בדיוק מה שהופך את זה למבלבל: כי אם אין דרמה גדולה, קל לחשוב שזה “לא באמת משהו”. אבל לפעמים דווקא הדברים הקטנים, היומיומיים, השקטים — הם אלה שתופסים הכי הרבה מקום בפנים.</p>
+        <p class="intro-accent">לפעמים הלב יודע לפני שיש לזה מילים.</p>
+        <button id="open-article" class="cta cta-primary" type="button">להמשך הקריאה</button>
+      </section>
+
+      <article id="article" class="article" hidden aria-hidden="true">
+        <section>
+          <h2>עייפות — למה אני עייפה גם כשאני לא תמיד יודעת ממה</h2>
+          <p>יש עייפות של סוף יום, ויש עייפות שמרגישה כאילו היא התיישבה לך בגוף עוד לפני שהיום התחיל. לא תמיד זו רק שינה. לפעמים זה הגוף שגדל ומשתנה מהר, לפעמים אלה שינויים הורמונליים, לפעמים המחזור, ולפעמים פשוט עומס שקשה להסביר במילים.</p>
+          <p>בגיל ההתבגרות קורים בפנים הרבה יותר דברים ממה שרואים מבחוץ. הגוף עובד, המוח מתפתח, הרגשות עולים ויורדים, ולפעמים כל זה קורה תוך כדי שצריך גם <strong>"להמשיך רגיל"</strong>. ואז העייפות כבר לא מרגישה כמו רגע חולף — אלא כמו משהו שמלווה אותך לאורך היום.</p>
+          <p>יש גם עייפות שלא נראית מבחוץ בכלל: עייפות מלחשוב יותר מדי, מלהחזיק את עצמך, מלנסות להיראות בסדר, מלסחוב דברים בשקט. ודווקא בגלל שהיא לא תמיד נראית “מוצדקת”, קל לפקפק בה.</p>
+          <p>אבל אם את מרגישה שאת מותשת גם כשאין סיבה אחת ברורה — זה לא אומר שאת מגזימה. לפעמים זו פשוט הדרך של הגוף והנפש להגיד שהם מחזיקים יותר ממה שנדמה.</p>
+          <blockquote class="quote-card">
+            <p>"לא תמיד יש לי דרך להסביר למה אני עייפה — אני רק יודעת שזה לא סתם."</p>
+          </blockquote>
+        </section>
+
+        <section>
+          <h2>רעב — למה לפעמים אני רעבה כל הזמן, ולפעמים בכלל לא בטוחה אם זה רעב</h2>
+          <p>גם רעב יכול להיות מבלבל. יש ימים שבהם הגוף מבקש יותר, ויש ימים שבהם הכול מתערבב — רעב, חשק, עומס, מצב רוח, שעמום, סטרס. לפעמים את באמת צריכה אנרגיה, ולפעמים את בכלל מנסה להבין מה הגוף שלך אומר לך.</p>
+          <p>בגיל הזה הגוף צריך הרבה. הוא גדל, משתנה, מתאמץ, מגיב למחזור, לשעות שינה, ללחץ, לרגש. אבל לא תמיד לימדו אותנו להקשיב לזה בלי ביקורת. במקום להבין מה קורה, קל מאוד להיכנס לשאלות כמו: “למה אני אוכלת ככה?”, “למה אני כל הזמן חושבת על אוכל?”, “למה אחרות נראות יותר מסודרות ממני?”.</p>
+          <p>הבעיה היא שלא כל רעב נראה אותו דבר. יש רעב פיזי, יש רעב רגשי, ויש גם רגעים שבהם את פשוט מנותקת מעצמך ולא בטוחה בכלל מה את מרגישה. וכשאין שפה ברורה לתחושות האלה, הן מתחילות להרגיש כמו משהו לא תקין — למרות שהן הרבה יותר נפוצות ממה שחושבים.</p>
+          <p>לפעמים זה לא רק האוכל עצמו. לפעמים זה כל מה שמתלבש עליו: בושה, השוואות, הערות, ניסיון “להתאפס”, תחושת חוסר שליטה. ודווקא שם מתחיל הכאב האמיתי.</p>
+        </section>
+
+        <section>
+          <h2>דימוי גוף — איך יכול להיות שזה עדיין יושב לי בראש כל כך הרבה</h2>
+          <p>יש משהו בדימוי גוף שלא נשאר רק מול המראה. הוא נכנס גם לבגדים, להליכה, לישיבה בכיתה, לתמונות, לים, לחדרי מדידה, לאיך שאת מרגישה ליד בנות אחרות. לפעמים זה לא אפילו “אני שונאת איך שאני נראית”, אלא משהו הרבה יותר שקט ומתמשך: מודעות־יתר, אי נוחות, בדיקה פנימית בלתי פוסקת.</p>
+          <p>בגיל ההתבגרות הגוף משתנה מהר, אבל הראש לא תמיד מספיק להתעדכן יחד איתו. יום אחד משהו מרגיש רגיל, ויום אחר פתאום הכול בולט, לוחץ, משווה, מכווץ. וכשמסביב יש רשתות, תמונות, תגובות, סטנדרטים בלתי נגמרים — קל מאוד להרגיש שאת כל הזמן נמדדת, גם כשאף אחת לא אומרת כלום.</p>
+          <p>הרבה פעמים הכאב בדימוי גוף הוא לא רק איך שאת נראית — אלא כמה מקום זה תופס לך בפנים. כמה מחשבה, כמה דריכות, כמה אנרגיה. כמה מהר מצב רוח יכול להשתנות בגלל מבט, בגד, צילום, או השוואה אחת קטנה.</p>
+          <p>וזה בדיוק מה שהופך את זה למשהו שלא כדאי להקטין. כי גם אם מבחוץ זה נראה “קטן”, מבפנים זה יכול לגעת כמעט בכל חלק ביום שלך.</p>
+          <blockquote class="quote-card">
+            <p>"יש ימים שאני לא באמת עסוקה בעצמי — ויש ימים שכל הגוף שלי מרגיש כמו משהו שצריך לנהל."</p>
+          </blockquote>
+        </section>
+
+        <section>
+          <h2>תנועה — מתי לזוז מרגיש טוב, ומתי זה כבר מסתבך עם כל מה שאני מרגישה</h2>
+          <p>תנועה יכולה להיות משהו משחרר, מקרקע, מרגיע, ממלא באנרגיה. לפעמים אפילו כמה דקות של הליכה, ריקוד, מתיחות או תזוזה קטנה עושות מקום לנשימה. הגוף נזכר שהוא לא רק משהו שמסתכלים עליו — אלא גם משהו שאפשר להרגיש מבפנים.</p>
+          <p>אבל אצל הרבה בנות, תנועה כבר לא תמיד נשארת דבר פשוט. לפעמים היא מסתבכת עם דימוי גוף, עם לחץ, עם רצון “להיות יותר”, “להיראות אחרת”, “לפצות”, “לא להרגיש אשמה”. ואז משהו שהיה יכול להיות טבעי וחי — נהיה טעון.</p>
+          <p>יש הבדל גדול בין לזוז כי זה עושה לך טוב, לבין לזוז מתוך מאבק. ולפעמים קשה בכלל לזהות מתי הגבול זז. מתי זה מחזק — ומתי זה כבר מרוקן.</p>
+          <p>כשגם דברים שאמורים לעזור מרגישים מסובכים, זה לא אומר שמשהו בך מקולקל. זה רק אומר שאולי יש כאן יותר עומק ממה שרואים מבחוץ.</p>
+        </section>
+
+        <section>
+          <h2>ביטחון — למה כל כך קל לאבד אותו, גם כשכלפי חוץ הכול נראה בסדר</h2>
+          <p>ביטחון לא תמיד נשבר ברגע אחד גדול. לפעמים הוא נשחק לאט. מהערה קטנה, מהשוואה, ממבט, משתיקה, מתחושה שאת אמורה להבין לבד איך להיות “נכונה”. לפעמים מבחוץ את נראית לגמרי בסדר — אבל בפנים משהו כל הזמן בודק את עצמו.</p>
+          <p>יש ימים שבהם כל דבר קטן מצליח לגעת בנקודה רגישה: איך דיברת, איך נראית, מה אכלת, איך עמדת, אם היית יותר מדי או פחות מדי. וכשיש יותר מדי קולות מבחוץ, הקול הפנימי שלך מתחיל להיחלש.</p>
+          <p>הקושי הוא שביטחון לא קשור רק לאופי. הוא קשור גם לגוף, לעייפות, לרעב, להשוואות, לתחושת נוחות, למקום שאת מרגישה שמותר לך לתפוס. הכול מתחבר. וכשכמה דברים קטנים מצטברים יחד — הם יכולים להפוך לתחושה גדולה מאוד של חוסר שקט.</p>
+          <p>אז אם יש ימים שבהם את מרגישה פחות בטוחה בלי לדעת להסביר בדיוק למה, זה לא בהכרח “רק בראש שלך”. לפעמים זו תוצאה של הרבה דברים קטנים שנשמרים בפנים יותר מדי זמן.</p>
+          <blockquote class="quote-card">
+            <p>"אולי זה לא דבר אחד גדול — אולי זה פשוט יותר מדי דברים קטנים שאני מחזיקה לבד."</p>
+          </blockquote>
+        </section>
+
+        <section class="closing">
+          <h2>אולי זה לא “סתם”</h2>
+          <p>עייפות. רעב. הגוף. התנועה. הביטחון. אלה אולי נראים כמו נושאים נפרדים, אבל בחיים האמיתיים הם כמעט אף פעם לא באמת נפרדים. הכול יושב אחד על השני, משפיע אחד על השני, ומרגיש הרבה יותר אישי ממה שזה נשמע כשכותבים את זה מבחוץ.</p>
+          <p>ואולי זה בדיוק העניין: לא כל מה שכואב צריך להיות דרמטי כדי להיות אמיתי. לא כל מה שמבלבל צריך להיראות מבחוץ כדי שיגיע לו מקום. ולא כל מה שקטן — הוא באמת קטן.</p>
+          <p>אם משהו מכל זה הרגיש לך מוכר, נגע, או לחץ במקום שקשה להסביר — אולי זו לא סתם רגישות. אולי זו פשוט דרך לזהות שיש כאן משהו אמיתי ששווה לעצור בשבילו.</p>
+        </section>
+
+        <nav class="footer-nav" aria-label="ניווט תחתון">
+          <p class="footer-label">להמשך הדרך</p>
+          <div class="footer-actions">
+            <a class="cta cta-soft" href="./alldomains.html">חזרה לכל התחומים</a>
+            <a class="cta cta-soft" href="./dev-d3.html">לעבור לתחום הבא</a>
+          </div>
+        </nav>
+      </article>
+    </main>
+  </div>
+
+  <script>
+    const introSection = document.getElementById('intro');
+    const articleSection = document.getElementById('article');
+    const openIntroBtn = document.getElementById('open-intro');
+    const openArticleBtn = document.getElementById('open-article');
+
+    openIntroBtn.addEventListener('click', () => {
+      if (introSection.hasAttribute('hidden')) {
+        introSection.hidden = false;
+        introSection.setAttribute('aria-hidden', 'false');
+        introSection.classList.add('is-revealed');
+      }
+      introSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
+
+    openArticleBtn.addEventListener('click', () => {
+      if (articleSection.hasAttribute('hidden')) {
+        articleSection.hidden = false;
+        articleSection.setAttribute('aria-hidden', 'false');
+        articleSection.classList.add('is-revealed');
+      }
+      articleSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
+  </script>
+</body>
+</html>
